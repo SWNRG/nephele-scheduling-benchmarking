@@ -1,16 +1,23 @@
 FROM python:3.9-slim
 
 RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get clean
+    apt-get install -y --no-install-recommends \
+        curl \
+        git \
+        build-essential \
+        cmake \
+        glpk-utils \
+        libglpk-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir flask kubernetes
+RUN pip install --no-cache-dir flask kubernetes cvxpy cvxopt
 
 WORKDIR /app
 
 COPY getResources.py /app/getResources.py
-COPY placement.py /app/placement.py
-COPY mcplacement.py /app/mcplacement.py
+COPY nodeplacement.py /app/nodeplacement.py
+COPY clusterplacement.py /app/clusterplacement.py
 COPY app.py /app/app.py
 
 

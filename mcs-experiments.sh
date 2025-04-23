@@ -17,6 +17,7 @@ cluster_nodes=(2 2 3) # number of nodes per cluster
 cluster_cpu=(32 32 32)  # cpu of cluster nodes
 cluster_memory=("256Gi" "256Gi" "256Gi")  # memory of cluster nodes
 cluster_pods=(100 100 100)   # maximum number of pods to allocate
+cluster_gpus=(0 0 0)
 
 # Define service slices configuration
 services_names=("lightmemory" "heavymemory" "lightcpu" "mediumcpu" "heavymemory" "heavycpu")
@@ -26,6 +27,7 @@ services_dependencies=("heavymemory" "" "mediumcpu" "" "heavycpu" "")
 services_cpu=("light" "light" "light" "medium" "light" "large")
 services_memory=("light" "large" "light" "light" "large" "light")
 services_replicas=(1 1 1 1 1 1) # number of times to replicate each service
+services_gpus=(0 0 0 0 0 0) # whether each service requires gpu acceleration or not
 
 # Translating intents
 echo -e "${GREEN}Translating intents${NC}"
@@ -63,7 +65,31 @@ source ./createServiceJSON.sh
 json=$(create_service_json "")
 echo "$json"
 
-services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
+# request cluster placement
+response=$(curl -X POST "http://127.0.0.1:8000/clusterplacement" \
+-H "Content-Type: application/json" \
+-d "$json")
+
+#echo $response
+
+# Now convert JSON array to bash array
+placement_array=($(echo "$response" | jq '.[]'))
+
+# Check it
+#echo "${placement_array[@]}"
+
+# Iterate over placement_array to map service indices to cluster names
+services_placements=()
+
+for i in "${!placement_array[@]}"; do
+  cluster="${cluster_names[${placement_array[$i]}]}"
+  services_placements+=("$cluster")
+done
+
+# Print all service placements
+echo "${services_placements[@]}"
+
+#services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
 
 echo ""
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -X POST "http://127.0.0.1:8000/placement?context=cluster1" \
+curl -X POST "http://127.0.0.1:8000/nodeplacement?context=cluster1" \
 -H "Content-Type: application/json" \
 -d '{
     "cluster": "cluster3",

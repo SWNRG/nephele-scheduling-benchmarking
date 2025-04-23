@@ -6,6 +6,7 @@
 # services_memory
 # services_dependencies
 # services_replicas
+# services_gpus
 # output:
 # (sliced) service JSON
 
@@ -39,6 +40,12 @@ if [ -z "$services_replicas" ]; then
     exit 1
 fi
 
+# services_gpus variable should be specified
+if [ -z "$services_gpus" ]; then
+    echo "services_gpus variable should be specified"
+    exit 1
+fi
+
 create_service_json() {
   local cluster_name=$1
   local services_json=""
@@ -51,12 +58,13 @@ create_service_json() {
       local memory="${services_memory[$i]}"
       local dependency="${services_dependencies[$i]}"
       local replicas="${services_replicas[$i]}"
+      local gpu="${services_gpus[$i]}"
 
       for k in $(seq 1 $replicas); do
         if [ -z "$services_json" ]; then
-          services_json+="{\"id\": \"${service_id}$k\", \"cpu\": \"$cpu\", \"memory\": \"$memory\"}"
+          services_json+="{\"id\": \"${service_id}$k\", \"cpu\": \"$cpu\", \"memory\": \"$memory\", \"gpu\": \"$gpu\"}"
         else
-          services_json+=",\n{\"id\": \"${service_id}$k\", \"cpu\": \"$cpu\", \"memory\": \"$memory\"}"
+          services_json+=",\n{\"id\": \"${service_id}$k\", \"cpu\": \"$cpu\", \"memory\": \"$memory\", \"gpu\": \"$gpu\"}"
         fi
 
         if [[ -z "$graph_descriptor" ]]; then

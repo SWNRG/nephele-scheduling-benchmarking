@@ -1,7 +1,8 @@
 """Application node placement related functionalities."""
 
 import cvxpy as cp
-
+import numpy as np
+import json
 
 def swap_placement(service_dict):
     """
@@ -35,6 +36,53 @@ def convert_placement(placement, services, clusters):
         service_placement[service_name] = clusters[cluster_index]
 
     return service_placement
+
+
+def create_placement_input(cluster_json, service_json):
+    """
+    Converts cluster and service JSON into inputs for cluster placement 
+    function.
+
+    Parameters
+    ----------
+    cluster_json : dict
+    Dictionary containing cluster information in the specified format.
+    service_json : dict
+    Dictionary containing service information in the specified format.
+
+    Returns
+    -------
+    cluster_capacities : list of float
+    cluster_accelerations : list of bool
+    cpu_limits: list of float
+    accelerations: list of bool
+    replicas: list of int
+    current_placement: 2D list of placement
+    """
+    cluster_capacities = []
+    cluster_accelerations = []
+
+    for cluster_info in cluster_json.values():
+        cluster_capacities.append(cluster_info["available_cpu"])
+        cluster_accelerations.append(cluster_info["gpu"])
+
+    cpu_limits = []
+    accelerations = []
+    replicas = []
+
+    for service_info in service_json:
+        cpu_limits.append(service_info["cpu"])
+        accelerations.append(service_info["gpu"])
+        replicas.append(service_info.get("replicas", 1))
+
+    num_clusters = len(cluster_json)
+    num_services = len(service_json)
+
+    # Create empty current placement
+    #current_placement = [[0 for _ in range(num_services)] for _ in range(num_clusters)]
+    current_placement = np.zeros((num_services, num_clusters))
+
+    return cluster_capacities, cluster_accelerations, cpu_limits, accelerations, replicas, current_placement
 
 
 def decide_placement(
@@ -96,7 +144,8 @@ def decide_placement(
 
     # Constraint 4: Dependency constraint - This is adjusted to avoid recursion
     # Ensure no cyclic dependency by rethinking how dependencies are handled
-    d = [0, 0]
+    #d = [0, 0]
+    d = [0 for _ in range(num_nodes)]
     for i in range(1, num_nodes):
         for e in range(num_clusters):
             constraints.append(x[i, e] + x[i - 1, e] >= d[i - 1])
@@ -104,7 +153,14 @@ def decide_placement(
     problem = cp.Problem(objective, constraints)
     problem.solve(solver=cp.GLPK_MI, qcp=True)
 
-    placement = [[int(x.value[s, e]) for e in range(num_clusters)] for s in range(num_nodes)]
+    #placement = [[int(x.value[s, e]) for e in range(num_clusters)] for s in range(num_nodes)]
+     # Instead of 2D matrix, find for each service which cluster it is placed on
+
+    x_val = x.value
+    placement = [int(np.argmax(x_val[s])) for s in range(num_nodes)]
+
+    placement = list(placement)  # <- super safe
+
     return placement
 
 
