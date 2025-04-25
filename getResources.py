@@ -149,6 +149,8 @@ def calculate_cluster_metrics(cluster_metrics, context_name):
             #if node.spec.unschedulable:
             #    continue
 
+            logger.info("Go on...")
+
             capacity = node.status.capacity
             total_cpu = total_cpu + parse_cpu(capacity.get("cpu"))
             total_memory = total_memory + parse_memory(capacity.get("memory"))
@@ -168,10 +170,11 @@ def calculate_cluster_metrics(cluster_metrics, context_name):
                 used_cpu = used_cpu + parse_cpu(metrics["usage"]["cpu"])
                 used_memory = used_memory + parse_memory(metrics["usage"]["memory"])
             except client.exceptions.ApiException as e:
+
                 if e.status == 404:
-                    continue
-                    #used_cpu = 0
-                    #used_memory = 0
+                    #continue
+                    used_cpu = 0
+                    used_memory = 0
                 else:
                     raise
 
@@ -232,7 +235,7 @@ def get_node_metrics(context_name):
                 continue
             #if node.spec.unschedulable:
             #    continue
-
+ 
             capacity = node.status.capacity
             total_cpu = parse_cpu(capacity.get("cpu"))
             total_memory = parse_memory(capacity.get("memory"))
