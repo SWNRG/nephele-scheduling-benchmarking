@@ -12,49 +12,49 @@
 # Creates experiment's output in JSON format.
 
 # cluster_names variable should be specified
-if [ -z "$cluster_names" ]; then
+if [ -z "${cluster_names}" ]; then
     echo "cluster_names variable should be specified"
     exit 1
 fi
 
 # cluster_cpu_utilization variable should be specified
-if [ -z "$cluster_cpu_utilization" ]; then
+if [ ${#cluster_cpu_utilization[@]} -eq 0 ]; then
     echo "cluster_cpu_utilization variable should be specified"
     exit 1
 fi
 
 # cluster_memory_utilization variable should be specified
-if [ -z "$cluster_memory_utilization" ]; then
+if [ ${#cluster_memory_utilization[@]} -eq 0 ]; then
     echo "cluster_memory_utilization variable should be specified"
     exit 1
 fi
 
 # cluster_node_utilization variable should be specified
-if [ -z "$cluster_node_utilization" ]; then
+if [ ${#cluster_node_utilization[@]} -eq 0 ]; then
     echo "cluster_node_utilization variable should be specified"
     exit 1
 fi
 
 # node_cpu_utilization variable should be specified
-if [ -z "$node_cpu_utilization" ]; then
+if [ ${#node_cpu_utilization[@]} -eq 0 ]; then
     echo "node_cpu_utilization variable should be specified"
     exit 1
 fi
 
 # node_memory_utilization variable should be specified
-if [ -z "$node_memory_utilization" ]; then
+if [ ${#node_memory_utilization[@]} -eq 0 ]; then
     echo "node_memory_utilization variable should be specified"
     exit 1
 fi
 
 # cluster_placement_time variable should be specified
-if [ -z "$cluster_placement_time" ]; then
+if [ -z "${cluster_placement_time}" ]; then
     echo "cluster_placement_time variable should be specified"
     exit 1
 fi
 
 # node_placement_time variable should be specified
-if [ -z "$node_placement_time" ]; then
+if [ -z "${node_placement_time}" ]; then
     echo "node_placement_time variable should be specified"
     exit 1
 fi

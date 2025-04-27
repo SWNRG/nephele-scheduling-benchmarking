@@ -59,7 +59,10 @@ for i in "${!cluster_names[@]}"; do
 
   if [[ -z $node_metrics ]]; then
     # empty results, probably metrics server is not sending measurements yet
-    echo "Empty results, probably metrics server is not sending measurements yet"
+    echo "No metrics for $cluster, assuming 0% utilization."
+    cluster_cpu_utilization["$cluster"]=0
+    cluster_memory_utilization["$cluster"]=0
+    cluster_node_utilization["$cluster"]=0
   else
     while read -r line; do
       node_name=$(echo "$line" | awk '{print $1}')
