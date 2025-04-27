@@ -69,17 +69,7 @@ echo "$json"
 start_cluster_placement=$(date +%s)
 
 # request cluster placement
-response=$(curl -X POST "http://127.0.0.1:8000/clusterplacement" \
--H "Content-Type: application/json" \
--d "$json")
-
-if ! echo "$response" | jq . >/dev/null 2>&1; then
-  echo -e "${RED}Error: Invalid response from scheduler:${NC}"
-  echo "$response"
-  exit 1
-fi
-
-echo "response is: $response"
+source ./clusterPlacement.sh
 
 end_cluster_placement=$(date +%s)
 cluster_placement_time=$((end_cluster_placement - start_cluster_placement))
@@ -137,101 +127,13 @@ echo ""
 
 # Metrics gathering
 echo -e "${GREEN}Gathering resource metrics (CPU & Memory)${NC}"
-
-declare -A cluster_cpu_utilization
-declare -A cluster_node_utilization
-declare -A cluster_memory_utilization
-declare -A node_cpu_utilization
-declare -A node_utilization
-declare -A node_memory_utilization
-
-for i in "${!cluster_names[@]}"; do
-  cluster="${cluster_names[$i]}"
-  nodes=${cluster_nodes[$i]}
-  echo -e "${YELLOW}Fetching metrics for $cluster${NC}"
-
-  node_metrics=$(kwokctl --name=$cluster kubectl top nodes --no-headers 2>/dev/null)
-
-  total_cpu=0
-  total_mem=0
-  total_cpu_capacity=$((cluster_cpu[$i] * 1000 * nodes))  # assuming 'm' (millicores)
-  total_mem_capacity=$(echo "${cluster_memory[$i]}" | sed 's/Gi//' | awk "{ print $1 * 1024 * 1024 }")
-  total_mem_capacity=$((total_mem_capacity * nodes))  # in Ki
-
-  used_nodes=0
-
-  while read -r line; do
-    node_name=$(echo "$line" | awk '{print $1}')
-    cpu_usage=$(echo "$line" | awk '{print $2}' | sed 's/m//')
-    mem_usage_raw=$(echo "$line" | awk '{print $3}')
-    
-    # Normalize memory to Ki
-    if [[ $mem_usage_raw == *Ki ]]; then
-      mem_usage=$(echo "$mem_usage_raw" | sed 's/Ki//')
-    elif [[ $mem_usage_raw == *Mi ]]; then
-      mem_usage=$(echo "$mem_usage_raw" | sed 's/Mi//')
-      mem_usage=$((mem_usage * 1024))
-    elif [[ $mem_usage_raw == *Gi ]]; then
-      mem_usage=$(echo "$mem_usage_raw" | sed 's/Gi//')
-      mem_usage=$((mem_usage * 1024 * 1024))
-    fi
-
-    # Calculate usage %
-    cpu_percent=$((cpu_usage * 100 / (cluster_cpu[$i] * 1000)))
-    mem_percent=$((mem_usage * 100 / ( $(echo "${cluster_memory[$i]}" | sed 's/Gi//') * 1024 * 1024 )))
-
-    node_cpu_utilization["$node_name"]=$cpu_percent
-    node_memory_utilization["$node_name"]=$mem_percent
-    node_utilization["$node_name"]=100
-
-    total_cpu=$((total_cpu + cpu_usage))
-    total_mem=$((total_mem + mem_usage))
-    used_nodes=$((used_nodes + 1))
-  done <<< "$node_metrics"
-
-  cluster_cpu_utilization["$cluster"]=$((total_cpu * 100 / total_cpu_capacity))
-  cluster_memory_utilization["$cluster"]=$((total_mem * 100 / total_mem_capacity))
-  cluster_node_utilization["$cluster"]=$((used_nodes * 100 / nodes))
-done
+source ./gatherMetrics.sh
 
 echo ""
 
 # Generating results.json
 echo -e "${GREEN}Generating results.json${NC}"
-
-results=$(jq -n \
-  --argjson clusterPlacementTime "$cluster_placement_time" \
-  --argjson nodePlacementTime "$node_placement_time" \
-  --argjson clusters "$(jq -n '[
-    '"$(for c in "${cluster_names[@]}"; do
-      printf '{
-        "name": "%s",
-        "cpuUtilization": %d,
-        "memoryUtilization": %d,
-        "nodeUtilization": %d
-      },' "$c" "${cluster_cpu_utilization[$c]}" "${cluster_memory_utilization[$c]}" "${cluster_node_utilization[$c]}"
-    done | sed 's/,$//')'
-  ]')" \
-  --argjson nodes "$(jq -n '[
-    '"$(for n in "${!node_cpu_utilization[@]}"; do
-      printf '{
-        "name": "%s",
-        "cpuUtilization": %d,
-        "memoryUtilization": %d,
-        "nodeUtilization": %d
-      },' "$n" "${node_cpu_utilization[$n]}" "${node_memory_utilization[$n]}" "${node_utilization[$n]}"
-    done | sed 's/,$//')'
-  ]')" \
-  '{
-    clusterPlacementTime: $clusterPlacementTime,
-    nodePlacementTime: $nodePlacementTime,
-    clusters: $clusters,
-    nodes: $nodes
-  }'
-)
-
-echo "$results" > results.json
-echo -e "${GREEN}Results saved to results.json${NC}"
+source ./generateOutputJSON.sh
 
 echo ""
 

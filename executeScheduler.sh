@@ -3,7 +3,9 @@
 # its previous instance, if it exists
 
 # build scheduler
+cd containers/scheduler
 docker build -t scheduler . 2> /dev/null > /dev/null
+cd ../../
 
 # stop and remove existing instance (if needed)
 docker stop scheduler 2> /dev/null > /dev/null

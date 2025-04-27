@@ -16,5 +16,5 @@ for i in "${!cluster_names[@]}"; do
 
   # Looking up node resources of cluster
   echo "Looking up node resources of $cluster_name"
-  kwokctl --name=$cluster_name kubectl top nodes
+  kwokctl --name=$cluster_name kubectl top nodes 2> /dev/null
 done
