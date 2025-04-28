@@ -28,8 +28,8 @@ if [ -z "$services_memory" ]; then
     exit 1
 fi
 
-# services_dependencies variable should be specified
-if [ -z "$services_dependencies" ]; then
+# services_dependencies variable should be set (empty string is allowed)
+if [ -z "${services_dependencies[@]+x}" ]; then
     echo "services_dependencies variable should be specified"
     exit 1
 fi

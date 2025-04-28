@@ -26,8 +26,8 @@ if [ -z "$services_placements" ]; then
     exit 1
 fi
 
-# services_dependencies variable should be specified
-if [ -z "$services_dependencies" ]; then
+# services_dependencies variable should be set (empty string is allowed)
+if [ -z "${services_dependencies[@]+x}" ]; then
     echo "services_dependencies variable should be specified"
     exit 1
 fi
@@ -58,6 +58,7 @@ fi
 
 # Create and place services json
 # Use associative array to filter unique values
+unset seen
 declare -A seen
 # Keep track of placements with placements array
 placements=()

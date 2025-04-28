@@ -19,27 +19,18 @@ cluster_memory=("256Gi" "256Gi" "256Gi")  # memory of cluster nodes
 cluster_pods=(100 100 100)   # maximum number of pods to allocate
 cluster_gpus=(0 0 0)
 
-# Define service slices configuration
-services_names=("lightmemory" "heavymemory" "lightcpu" "mediumcpu" "secondheavymemory" "heavycpu") # use different names per service!
+# Define service slices configuration (each set is being deployed with a period defined in placement_period variable)
+services_names_sets=("lightmemory" "heavymemory" "lightcpu" "mediumcpu" "secondheavymemory" "heavycpu") # use different names per service!
 # if services_placements is specified, it skips multi-cluster placement process
 #services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
-services_dependencies=("heavymemory" "" "mediumcpu" "" "heavycpu" "")
-services_cpu=("light" "light" "light" "medium" "light" "large")
-services_memory=("light" "large" "light" "light" "large" "light")
-services_replicas=(1 1 1 1 1 1) # number of times to replicate each service
-services_gpus=(0 0 0 0 0 0) # whether each service requires gpu acceleration or not
+services_dependencies_sets=("heavymemory" "" "mediumcpu" "" "heavycpu" "")
+services_cpu_sets=("light" "light" "light" "medium" "light" "large")
+services_memory_sets=("light" "large" "light" "light" "large" "light")
+services_replicas_sets=(1 1 1 1 1 1) # number of times to replicate each service
+services_gpus_sets=(0 0 0 0 0 0) # whether each service requires gpu acceleration or not
 
-# Translating intents
-echo -e "${GREEN}Translating intents${NC}"
-source ./translateIntents.sh
-
-echo ""
-
-# Executing scheduler
-echo -e "${GREEN}Executing scheduler${NC}"
-source ./executeScheduler.sh
-
-echo ""
+# service placement period (in secs)
+placement_period=60
 
 # Creating clusters
 echo -e "${GREEN}Creating clusters${NC}"
@@ -58,65 +49,102 @@ done
 
 echo ""
 
-# Multi-cluster service placement (choosing cluster per service)
-# Should return services_placements array.
-echo -e "${GREEN}Creating service JSON${NC}"
-source ./createServiceJSON.sh
-json=$(create_service_json "")
-echo "$json"
+# Executing scheduler
+echo -e "${GREEN}Executing scheduler${NC}"
+source ./executeScheduler.sh
+# wait 3 secs
+sleep 3
 
-# Timing cluster placement
-start_cluster_placement=$(date +%s)
+echo ""
 
-# request cluster placement
-source ./clusterPlacement.sh
+# Iterating through service placements
+echo -e "${GREEN}Iterating through service placements${NC}"
+for index in "${!services_names_sets[@]}"; do
+  services_names=(${services_names_sets[$index]})  # get service set
+  if [ -z ${services_dependencies_sets[$index]} ]; then
+    services_dependencies=("")
+  else
+    services_dependencies=(${services_dependencies_sets[$index]})
+  fi
+  services_cpu=(${services_cpu_sets[$index]})
+  services_memory=(${services_memory_sets[$index]})
+  services_replicas=(${services_replicas_sets[$index]})
+  services_gpus=(${services_gpus_sets[$index]})
 
-end_cluster_placement=$(date +%s)
-cluster_placement_time=$((end_cluster_placement - start_cluster_placement))
+  echo -e "${BLUE}Deploying services: ${services_names[@]}${NC}"
+  echo "services_dependencies: ${services_dependencies[@]}"
+  echo "services_cpu: ${services_cpu[@]}"
+  echo "services_memory: ${services_memory[@]}"
+  echo "services_replicas: ${services_replicas[@]}"
+  echo "services_gpus: ${services_gpus[@]}"
 
-# Now convert JSON array to bash array
-placement_array=($(echo "$response" | jq '.[]'))
+  echo ""
 
-# Iterate over placement_array to map service indices to cluster names
-services_placements=()
+  # Translating intents
+  echo -e "${GREEN}Translating intents${NC}"
+  source ./translateIntents.sh
 
-for i in "${!placement_array[@]}"; do
-  index=$(( ${placement_array[i]} - 1 ))
-  cluster="${cluster_names[$index]}"
-  services_placements+=("$cluster")
+  echo ""
+
+  # Multi-cluster service placement (choosing cluster per service)
+  # Should return services_placements array.
+  echo -e "${GREEN}Creating service JSON${NC}"
+  source ./createServiceJSON.sh
+  json=$(create_service_json "")
+  echo "$json"
+
+  # Timing cluster placement
+  start_cluster_placement=$(date +%s)
+
+  # request cluster placement
+  source ./clusterPlacement.sh
+
+  end_cluster_placement=$(date +%s)
+  cluster_placement_time=$((end_cluster_placement - start_cluster_placement))
+
+  # Now convert JSON array to bash array
+  placement_array=($(echo "$response" | jq '.[]'))
+
+  # Iterate over placement_array to map service indices to cluster names
+  services_placements=()
+
+  for i in "${!placement_array[@]}"; do
+    index=$(( ${placement_array[i]} - 1 ))
+    cluster="${cluster_names[$index]}"
+    services_placements+=("$cluster")
+  done
+
+  # Print all service placements
+  echo "${services_placements[@]}"
+
+  #services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
+  echo ""
+
+  # Local cluster service placement (choosing cluster nodes per service)
+  echo -e "${GREEN}Placing services${NC}"
+  # Timing node placement
+  start_node_placement=$(date +%s)
+  source ./placeServices.sh
+  end_node_placement=$(date +%s)
+  node_placement_time=$((end_node_placement - start_node_placement))
+
+  # Looking up clusters' pods
+  for i in "${!cluster_names[@]}"; do
+    cluster_name="${cluster_names[$i]}"
+
+    # Looking up pods of cluster
+    echo "Looking up pods of $cluster_name"
+    kwokctl --name=$cluster_name kubectl get pods -o wide
+  done
+
+  echo ""
+
+  # Waiting for deployment to complete
+  echo -e "${GREEN}Waiting for experiment to complete${NC}"
+  sleep $placement_period
+
+  echo ""
 done
-
-# Print all service placements
-echo "${services_placements[@]}"
-
-#services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
-
-echo ""
-
-# Local cluster service placement (choosing cluster nodes per service)
-echo -e "${GREEN}Placing services${NC}"
-# Timing node placement
-start_node_placement=$(date +%s)
-source ./placeServices.sh
-end_node_placement=$(date +%s)
-node_placement_time=$((end_node_placement - start_node_placement))
-
-# Looking up clusters' pods
-for i in "${!cluster_names[@]}"; do
-  cluster_name="${cluster_names[$i]}"
-
-  # Looking up pods of cluster
-  echo "Looking up pods of $cluster_name"
-  kwokctl --name=$cluster_name kubectl get pods -o wide
-done
-
-echo ""
-
-# Waiting for experiment to complete
-echo -e "${GREEN}Waiting for experiment to complete${NC}"
-sleep 60
-
-echo ""
 
 # Looking up cluster resources
 echo -e "${GREEN}Looking up cluster resources${NC}"
