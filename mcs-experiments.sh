@@ -32,6 +32,14 @@ services_gpus_sets=(0 0 0 0 0 0) # whether each service requires gpu acceleratio
 # service placement period (in secs)
 placement_period=60
 
+# Executing scheduler
+echo -e "${GREEN}Executing scheduler${NC}"
+source ./executeScheduler.sh
+# wait 5 secs
+sleep 5
+
+echo ""
+
 # Creating clusters
 echo -e "${GREEN}Creating clusters${NC}"
 source ./createClusters.sh
@@ -46,14 +54,6 @@ for i in "${!cluster_names[@]}"; do
   echo "Looking up nodes of $cluster_name"
   kwokctl --name=$cluster_name kubectl get nodes
 done
-
-echo ""
-
-# Executing scheduler
-echo -e "${GREEN}Executing scheduler${NC}"
-source ./executeScheduler.sh
-# wait 3 secs
-sleep 3
 
 echo ""
 
