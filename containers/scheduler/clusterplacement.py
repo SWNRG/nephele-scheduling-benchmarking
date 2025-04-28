@@ -3,6 +3,9 @@
 import cvxpy as cp
 import numpy as np
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 def swap_placement(service_dict):
     """
@@ -81,6 +84,12 @@ def create_placement_input(cluster_json, service_json):
     # Create empty current placement
     #current_placement = [[0 for _ in range(num_services)] for _ in range(num_clusters)]
     current_placement = np.zeros((num_services, num_clusters))
+
+    logger.info("Received cluster placement input.")
+    logger.info(f"cluster_capacities: {cluster_capacities}")
+    logger.info(f"cluster_accelerations {cluster_accelerations}")
+    logger.info(f"cpu_limits: {cpu_limits}")
+    logger.info(f"accelerations: {accelerations}")
 
     return cluster_capacities, cluster_accelerations, cpu_limits, accelerations, replicas, current_placement
 

@@ -13,7 +13,7 @@ ANNOTATED_RESOURCES="annotated-resources.yaml"
 
 # Define clusters' configuration
 cluster_names=("cluster1" "cluster2" "cluster3")  # name of clusters
-cluster_nodes=(2 2 3) # number of nodes per cluster
+cluster_nodes=(2 2 2) # number of nodes per cluster
 cluster_cpu=(32 32 32)  # cpu of cluster nodes
 cluster_memory=("256Gi" "256Gi" "256Gi")  # memory of cluster nodes
 cluster_pods=(100 100 100)   # maximum number of pods to allocate
@@ -26,7 +26,7 @@ services_names_sets=("lightmemory" "heavymemory" "lightcpu" "mediumcpu" "secondh
 services_dependencies_sets=("heavymemory" "" "mediumcpu" "" "heavycpu" "")
 services_cpu_sets=("light" "light" "light" "medium" "light" "large")
 services_memory_sets=("light" "large" "light" "light" "large" "light")
-services_replicas_sets=(1 1 1 1 1 1) # number of times to replicate each service
+services_replicas_sets=(5 5 5 5 5 5) # number of times to replicate each service
 services_gpus_sets=(0 0 0 0 0 0) # whether each service requires gpu acceleration or not
 
 # service placement period (in secs)
