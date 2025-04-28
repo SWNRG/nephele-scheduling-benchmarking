@@ -67,7 +67,7 @@ for i in "${!cluster_names[@]}"; do
     while read -r line; do
       node_name=$(echo "$line" | awk '{print $1}')
       cpu_usage=$(echo "$line" | awk '{print $2}' | sed 's/m//')
-      mem_usage_raw=$(echo "$line" | awk '{print $3}')
+      mem_usage_raw=$(echo "$line" | awk '{print $4}')
 
       if [[ "$cpu_usage" == "<unknown>" || "$mem_usage_raw" == "<unknown>" ]]; then
 	# skip node, it has unknown resources.

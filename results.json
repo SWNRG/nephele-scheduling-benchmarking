@@ -1,5 +1,5 @@
 {
-  "clusterPlacementTime": 0,
+  "clusterPlacementTime": 1,
   "nodePlacementTime": 1,
   "clusters": [
     {
@@ -11,7 +11,7 @@
     {
       "name": "cluster2",
       "cpuUtilization": 21,
-      "memoryUtilization": 0,
+      "memoryUtilization": 3,
       "nodeUtilization": 50
     },
     {
@@ -23,9 +23,9 @@
   ],
   "nodes": [
     {
-      "name": "kwok-node-1",
+      "name": "kwok-node-2",
       "cpuUtilization": 43,
-      "memoryUtilization": 0
+      "memoryUtilization": 7
     }
   ]
 }
