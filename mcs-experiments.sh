@@ -176,3 +176,8 @@ source ./removeClusters.sh
 
 echo ""
 
+# Preparing results
+echo -e "${GREEN}Preparing results${NC}"
+source ./getResults.sh
+
+echo ""
