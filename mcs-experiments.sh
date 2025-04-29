@@ -109,7 +109,7 @@ for index in "${!services_names_sets[@]}"; do
   services_placements=()
 
   for i in "${!placement_array[@]}"; do
-    index=$(( ${placement_array[i]} - 1 ))
+    index=${placement_array[$i]}
     cluster="${cluster_names[$index]}"
     services_placements+=("$cluster")
   done

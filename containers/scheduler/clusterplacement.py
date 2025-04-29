@@ -84,6 +84,8 @@ def create_placement_input(cluster_json, service_json):
     # Create empty current placement
     #current_placement = [[0 for _ in range(num_services)] for _ in range(num_clusters)]
     current_placement = np.zeros((num_services, num_clusters))
+    # assume that all services has been deployed to first cluster
+    current_placement[:, 0] = 1
 
     logger.info("Received cluster placement input.")
     logger.info(f"cluster_capacities: {cluster_capacities}")
@@ -162,13 +164,18 @@ def decide_placement(
     problem = cp.Problem(objective, constraints)
     problem.solve(solver=cp.GLPK_MI, qcp=True)
 
-    #placement = [[int(x.value[s, e]) for e in range(num_clusters)] for s in range(num_nodes)]
+    placement2d = [[int(x.value[s, e]) for e in range(num_clusters)] for s in range(num_nodes)]
      # Instead of 2D matrix, find for each service which cluster it is placed on
+
+    logger.info(f"2D placement: {placement2d}")
+
 
     x_val = x.value
     placement = [int(np.argmax(x_val[s])) for s in range(num_nodes)]
 
     placement = list(placement)  # <- super safe
+
+    logger.info(f"placement: {placement}")
 
     return placement
 
