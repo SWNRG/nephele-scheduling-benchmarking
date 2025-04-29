@@ -67,6 +67,11 @@ for cluster_name in "${cluster_names[@]}"; do
     continue
   fi
 
+  if [[ ! "${services_placements[@]}" =~ "${cluster_name}" ]]; then
+    # Nothing placed in this cluster, continue
+    continue
+  fi
+
   seen[$cluster_name]=1
   echo "Placing services for cluster $cluster_name"
 

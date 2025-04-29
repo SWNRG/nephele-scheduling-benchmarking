@@ -20,14 +20,14 @@ cluster_pods=(100 100 100)   # maximum number of pods to allocate
 cluster_gpus=(0 0 0)
 
 # Define service slices configuration (each set is being deployed with a period defined in placement_period variable)
-services_names_sets=("lightmemory" "heavymemory" "lightcpu" "mediumcpu" "secondheavymemory" "heavycpu") # use different names per service!
+services_names_sets=("lightmemory heavymemory lightcpu" "mediumcpu secondheavymemory heavycpu") # use different names per service!
 # if services_placements is specified, it skips multi-cluster placement process
 #services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
-services_dependencies_sets=("heavymemory" "" "mediumcpu" "" "heavycpu" "")
-services_cpu_sets=("light" "light" "light" "medium" "light" "large")
-services_memory_sets=("light" "large" "light" "light" "large" "light")
-services_replicas_sets=(5 5 5 5 5 5) # number of times to replicate each service
-services_gpus_sets=(0 0 0 0 0 0) # whether each service requires gpu acceleration or not
+services_dependencies_sets=("heavymemory heavymemory mediumcpu" "heavycpu heavycpu heavycpu")
+services_cpu_sets=("light light light" "medium light large")
+services_memory_sets=("light large light" "light large light")
+services_replicas_sets=("1 1 1" "1 1 1") # number of times to replicate each service
+services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceleration or not
 
 # service placement period (in secs)
 placement_period=60
@@ -59,9 +59,14 @@ echo ""
 
 # Iterating through service placements
 echo -e "${GREEN}Iterating through service placements${NC}"
+# Keep track of all cluster placement times
+cluster_placement_times=()
+# Keep track of all node placement times
+node_placement_times=()
+
 for index in "${!services_names_sets[@]}"; do
   services_names=(${services_names_sets[$index]})  # get service set
-  if [ -z ${services_dependencies_sets[$index]} ]; then
+  if [ -z "${services_dependencies_sets[$index]}" ]; then
     services_dependencies=("")
   else
     services_dependencies=(${services_dependencies_sets[$index]})
@@ -100,7 +105,7 @@ for index in "${!services_names_sets[@]}"; do
   source ./clusterPlacement.sh
 
   end_cluster_placement=$(date +%s)
-  cluster_placement_time=$((end_cluster_placement - start_cluster_placement))
+  cluster_placement_times+=($((end_cluster_placement - start_cluster_placement)))
 
   # Now convert JSON array to bash array
   placement_array=($(echo "$response" | jq '.[]'))
@@ -126,7 +131,7 @@ for index in "${!services_names_sets[@]}"; do
   start_node_placement=$(date +%s)
   source ./placeServices.sh
   end_node_placement=$(date +%s)
-  node_placement_time=$((end_node_placement - start_node_placement))
+  node_placement_times+=($((end_node_placement - start_node_placement)))
 
   # Looking up clusters' pods
   for i in "${!cluster_names[@]}"; do

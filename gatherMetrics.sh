@@ -35,12 +35,50 @@ if [ -z "$cluster_memory" ]; then
     exit 1
 fi
 
+# cluster_placement_times variable should be specified
+if [ ${#cluster_placement_times[@]} -eq 0 ]; then
+    echo "cluster_placement_times variable should be specified"
+    exit 1
+fi
+
 declare -A cluster_cpu_utilization
 declare -A cluster_node_utilization
 declare -A cluster_memory_utilization
 declare -A node_cpu_utilization
 declare -A node_memory_utilization
 
+# calculate cluster_placement_time
+echo "Cluster placement times are: ${cluster_placement_times[@]}"
+total=0
+for time in "${cluster_placement_times[@]}"; do
+  total=$((total + time))
+done
+count=${#cluster_placement_times[@]}
+if (( count > 0 )); then
+  average=$((total / count))
+  echo "Average cluster placement time is: $average"
+  cluster_placement_time=$average
+else
+  cluster_placement_time=0
+fi
+
+# calculate node_placement_time
+echo "Node placement times are: ${node_placement_times[@]}"
+total=0
+for time in "${node_placement_times[@]}"; do
+  total=$((total + time))
+done
+count=${#node_placement_times[@]}
+if (( count > 0 )); then
+  average=$((total / count))
+  echo "Average node placement time is: $average"
+  node_placement_time=$average
+else
+  node_placement_time=0
+fi
+
+
+# Fetching metrics for each cluster
 for i in "${!cluster_names[@]}"; do
   cluster="${cluster_names[$i]}"
   nodes=${cluster_nodes[$i]}
