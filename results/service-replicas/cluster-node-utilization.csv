@@ -1,0 +1,5 @@
+Cluster Node Utilization (%)
+cluster1 cluster2 cluster3
+replica-1 100.00 0.00 0.00
+replicas-5 50.00 0.00 0.00
+replicas-10 0.00 0.00 0.00

@@ -1,14 +1,20 @@
 #!/bin/bash
 
-# run_ids variable should be specified
-if [ -z "$run_ids" ]; then
-    echo "run_ids variable should be specified"
+# runs variable should be specified
+if [ -z "$runs" ]; then
+    echo "runs variable should be specified"
     exit 1
 fi
 
 # replications variable should be specified
-if [ -z "$replications" ]; then
-    echo "replications variable should be specified"
+if [ -z "$replications_number" ]; then
+    echo "replications_number variable should be specified"
+    exit 1
+fi
+
+# experiment_name variable should be specified
+if [ -z "$experiment_name" ]; then
+    echo "experiment_name variable should be specified"
     exit 1
 fi
 
@@ -22,9 +28,6 @@ else
       exit 1
    fi
 fi
-
-# extract ranged variables
-runs=$(echo "$ranged_variables" | jq -c '.[]' | jq -r '.run_id')
 
 # get replication number
 replications=$replications_number
@@ -88,6 +91,10 @@ function process_metric() {
   local columns=$(echo "$metrics" | jq -r --arg metric_type "$metric_type" '.[$metric_type].columns | join(" ")')
   local rows=$(echo "$metrics" | jq -r --arg metric_type "$metric_type" '.[$metric_type].rows')
 
+  echo "states: $states"
+  echo "columns: $columns"
+  echo "rows: $rows"
+
   local tmpfile="/tmp/${metric_type}.txt"
 
   local csvfile="results/${experiment_name}/${metric_type}.csv"
@@ -98,7 +105,7 @@ function process_metric() {
   fi
 
   # Iterate through all runs
-  for run in $runs; do
+  for run in "${runs[@]}"; do
     # Reset temp file
     rm "$tmpfile" 2> /dev/null
 
@@ -113,7 +120,7 @@ function process_metric() {
       fi
 
       # declare results filename
-      local filename="results/${experiment_name}/${run}-results-$k.txt"
+      local filename="results/${experiment_name}/${run}-results-$k.json"
       # check if they are valid results
       validate_json_experiment_output $filename
 
@@ -138,11 +145,11 @@ function process_metric() {
     # Calculate and display average values
     if $show_averages; then
       
-      local num_columns=$(echo "$columns" | wc -w)
+      local num_states=$(($(echo "$states" | wc -w) + 1))
 
       awk_command="{"
       character='A'
-      for ((z=1; z<=$num_columns; z++)); do
+      for ((z=1; z<=$num_states; z++)); do
 	 if [[ $z -eq 1 ]]; then
             awk_command="${awk_command}${character}=\$$z;"
 	 else
@@ -151,12 +158,12 @@ function process_metric() {
 	 character=$(increment_char $character)
       done
       awk_command="${awk_command}} END { printf \"%s"
-      for ((z=2; z<=$num_columns; z++)); do
+      for ((z=2; z<=$num_states; z++)); do
 	 awk_command="${awk_command} %.2f"
       done
       awk_command="${awk_command}\n\""
       character='A'
-      for ((z=1; z<=$num_columns; z++)); do
+      for ((z=1; z<=$num_states; z++)); do
 	 if [[ $z -eq 1 ]]; then
             awk_command="${awk_command},${character}"
          else

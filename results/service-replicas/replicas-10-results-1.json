@@ -1,0 +1,38 @@
+{
+  "placements": {
+    "clusterPlacementTime": 0,
+    "nodePlacementTime": 7
+  },
+  "clusters": [
+    {
+      "name": "cluster1",
+      "cpuUtilization": 23,
+      "memoryUtilization": 17,
+      "nodeUtilization": 50
+    },
+    {
+      "name": "cluster2",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster3",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    }
+  ],
+  "nodes": [
+    {
+      "name": "kwok-node-1",
+      "cpuUtilization": 46,
+      "memoryUtilization": 35
+    },
+    {
+      "name": "kwok-node-2",
+      "cpuUtilization": 39,
+      "memoryUtilization": 3
+    }
+  ]
+}

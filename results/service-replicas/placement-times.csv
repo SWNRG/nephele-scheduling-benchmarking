@@ -1,0 +1,5 @@
+Cluster & Node Placement Times (ms)
+replica-1 replicas-5 replicas-10
+replica-1 0.00 1.00
+replicas-5 0.00 3.00
+replicas-10 0.00 0.00

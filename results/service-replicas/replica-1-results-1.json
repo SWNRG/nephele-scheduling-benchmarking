@@ -1,6 +1,8 @@
 {
-  "clusterPlacementTime": 0,
-  "nodePlacementTime": 1,
+  "placements": {
+    "clusterPlacementTime": 0,
+    "nodePlacementTime": 1
+  },
   "clusters": [
     {
       "name": "cluster1",

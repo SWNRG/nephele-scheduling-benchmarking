@@ -32,24 +32,18 @@ services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceler
 # service placement period (in secs)
 placement_period=60
 
-# name of experiment
-experiment_name="service-replicas"
-
-# define variables to range
-ranged_variables='[{"run_id":"replica-1","variables":{"replicas":"1"}},{"run_id":"replicas-5","variables":{"replicas":"5"}},{"run_id":"replicas-10","variables":{"replicas":"10"}}]'
-
-# number of replications for statistical accuracy purposes
-$replications_number=1
-
 # format of experiment output (e.g., json)
 output_format='json'
+
+# dry run option
+dry_run=false #true
 
 # structure of experiment output
 metrics='{
   "placement-times": {
     "values": [
-      ".clusterPlacementTime",
-      ".nodePlacementTime,
+      ".placements.clusterPlacementTime",
+      ".placements.nodePlacementTime"
     ],
     "columns": [
       "replica-1",
@@ -58,34 +52,86 @@ metrics='{
     ],
     "rows": "Cluster & Node Placement Times (ms)"
   },
-  "cluster-utilization": {
+  "cluster-cpu-utilization": {
     "values": [
-      ".clusters.cpuUtilization",
-      ".clusters.memoryUtilization",
-      ".clusters.nodeUtilization"
+      ".clusters[0].cpuUtilization",
+      ".clusters[1].cpuUtilization",
+      ".clusters[2].cpuUtilization"
     ],
     "columns": [
       "cluster1",
       "cluster2",
       "cluster3"
     ],
-    "rows": "Cluster Utilization (%)"
+    "rows": "Cluster CPU Utilization (%)"
+  },
+  "cluster-memory-utilization": {
+    "values": [
+      ".clusters[0].memoryUtilization",
+      ".clusters[1].memoryUtilization",
+      ".clusters[2].memoryUtilization"
+    ],
+    "columns": [
+      "cluster1",
+      "cluster2",
+      "cluster3"
+    ],
+    "rows": "Cluster Memory Utilization (%)"
+  },
+  "cluster-node-utilization": {
+    "values": [
+      ".clusters[0].nodeUtilization",
+      ".clusters[1].nodeUtilization",
+      ".clusters[2].nodeUtilization"
+    ],
+    "columns": [
+      "cluster1",
+      "cluster2",
+      "cluster3"
+    ],
+    "rows": "Cluster Node Utilization (%)"
   }
 }'
 
+# Reconfigure experiment based on run_id, if it is specified
+
+if [[ -v run_id ]]; then 
+  case $run_id in
+
+    "replica-1")
+      services_replicas_sets=("1 1 1" "1 1 1") # number of times to replicate each service
+      ;;
+
+    "replicas-5")
+      services_replicas_sets=("5 5 5" "5 5 5") # number of times to replicate each service
+      ;;
+
+    "replicas-10")
+      services_replicas_sets=("10 10 10" "10 10 10") # number of times to replicate each service
+      ;;
+
+    *)
+      echo "Unknown run_id"
+      exit 1
+      ;;
+  esac
+fi
+
 # Executing scheduler
 echo -e "${GREEN}Executing scheduler${NC}"
-source ./executeScheduler.sh
-# wait 5 secs
-sleep 5
-
+if [ "$dry_run" != "true" ]; then
+  source ./executeScheduler.sh
+  # wait 5 secs
+  sleep 5
+fi
 echo ""
 
 # Creating clusters
 echo -e "${GREEN}Creating clusters${NC}"
-source ./createClusters.sh
-
-create_clusters
+if [ "$dry_run" != "true" ]; then
+  source ./createClusters.sh
+  create_clusters
+fi
 
 # Looking up clusters' nodes
 for i in "${!cluster_names[@]}"; do
@@ -93,7 +139,9 @@ for i in "${!cluster_names[@]}"; do
 
   # Looking up nodes of cluster
   echo "Looking up nodes of $cluster_name"
-  kwokctl --name=$cluster_name kubectl get nodes
+  if [ "$dry_run" != "true" ]; then
+    kwokctl --name=$cluster_name kubectl get nodes
+  fi
 done
 
 echo ""
@@ -143,8 +191,9 @@ for index in "${!services_names_sets[@]}"; do
   start_cluster_placement=$(date +%s)
 
   # request cluster placement
-  source ./clusterPlacement.sh
-
+  if [ "$dry_run" != "true" ]; then
+    source ./clusterPlacement.sh
+  fi
   end_cluster_placement=$(date +%s)
   cluster_placement_times+=($((end_cluster_placement - start_cluster_placement)))
 
@@ -170,7 +219,9 @@ for index in "${!services_names_sets[@]}"; do
   echo -e "${GREEN}Placing services${NC}"
   # Timing node placement
   start_node_placement=$(date +%s)
-  source ./placeServices.sh
+  if [ "$dry_run" != "true" ]; then
+    source ./placeServices.sh
+  fi
   end_node_placement=$(date +%s)
   node_placement_times+=($((end_node_placement - start_node_placement)))
 
@@ -180,15 +231,18 @@ for index in "${!services_names_sets[@]}"; do
 
     # Looking up pods of cluster
     echo "Looking up pods of $cluster_name"
-    kwokctl --name=$cluster_name kubectl get pods -o wide
+    if [ "$dry_run" != "true" ]; then
+      kwokctl --name=$cluster_name kubectl get pods -o wide
+    fi
   done
 
   echo ""
 
   # Waiting for deployment to complete
   echo -e "${GREEN}Waiting for experiment to complete${NC}"
-  sleep $placement_period
-
+  if [ "$dry_run" != "true" ]; then
+    sleep $placement_period
+  fi
   echo ""
 done
 
@@ -201,24 +255,21 @@ echo ""
 
 # Metrics gathering
 echo -e "${GREEN}Gathering resource metrics (CPU & Memory)${NC}"
-source ./gatherMetrics.sh
-
+if [ "$dry_run" != "true" ]; then
+  source ./gatherMetrics.sh
+fi
 echo ""
 
 # Generating results.json
 echo -e "${GREEN}Generating results.json${NC}"
-source ./generateOutputJSON.sh
-
+if [ "$dry_run" != "true" ]; then
+  source ./generateOutputJSON.sh
+fi
 echo ""
 
 # Removing clusters
 echo -e "${GREEN}Removing clusters${NC}"
-source ./removeClusters.sh
-
-echo ""
-
-# Preparing results
-echo -e "${GREEN}Preparing results${NC}"
-source ./getResults.sh
-
+if [ "$dry_run" != "true" ]; then
+  source ./removeClusters.sh
+fi
 echo ""

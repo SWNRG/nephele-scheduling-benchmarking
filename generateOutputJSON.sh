@@ -85,11 +85,17 @@ results=$(jq -n \
   --argjson clusters "[$cluster_json]" \
   --argjson nodes "[$node_json]" \
   '{
-    clusterPlacementTime: $clusterPlacementTime,
-    nodePlacementTime: $nodePlacementTime,
+    placements: {
+      clusterPlacementTime: $clusterPlacementTime,
+      nodePlacementTime: $nodePlacementTime
+    },
     clusters: $clusters,
     nodes: $nodes
   }')
 
-echo "$results" > results.json
+if [[ -v run_id ]]; then
+  echo "$results" > results/${experiment_name}/${run_id}-results-${replication}.json
+else
+  echo "$results" > results.json
+fi
 echo -e "${GREEN}Results saved to results.json${NC}"
