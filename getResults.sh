@@ -23,14 +23,18 @@ else
    fi
 fi
 
+# extract ranged variables
+runs=$(echo "$ranged_variables" | jq -c '.[]' | jq -r '.run_id')
 
-runs=$run_ids
+# get replication number
 replications=$replications_number
 
 # show values from individual runs
 show_individual_runs=true
+
 # show average values
 show_averages=true
+
 # create separate csv files
 create_separate_csv_files=true
 

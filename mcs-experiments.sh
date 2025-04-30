@@ -32,6 +32,47 @@ services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceler
 # service placement period (in secs)
 placement_period=60
 
+# name of experiment
+experiment_name="service-replicas"
+
+# define variables to range
+ranged_variables='[{"run_id":"replica-1","variables":{"replicas":"1"}},{"run_id":"replicas-5","variables":{"replicas":"5"}},{"run_id":"replicas-10","variables":{"replicas":"10"}}]'
+
+# number of replications for statistical accuracy purposes
+$replications_number=1
+
+# format of experiment output (e.g., json)
+output_format='json'
+
+# structure of experiment output
+metrics='{
+  "placement-times": {
+    "values": [
+      ".clusterPlacementTime",
+      ".nodePlacementTime,
+    ],
+    "columns": [
+      "replica-1",
+      "replicas-5",
+      "replicas-10"
+    ],
+    "rows": "Cluster & Node Placement Times (ms)"
+  },
+  "cluster-utilization": {
+    "values": [
+      ".clusters.cpuUtilization",
+      ".clusters.memoryUtilization",
+      ".clusters.nodeUtilization"
+    ],
+    "columns": [
+      "cluster1",
+      "cluster2",
+      "cluster3"
+    ],
+    "rows": "Cluster Utilization (%)"
+  }
+}'
+
 # Executing scheduler
 echo -e "${GREEN}Executing scheduler${NC}"
 source ./executeScheduler.sh
