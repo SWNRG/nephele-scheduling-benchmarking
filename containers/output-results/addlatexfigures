@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "" >> results.tex
+#echo "\\begin{verbatim}" >> results.tex
+#echo "$(cat results/$3)" >> results.tex
+#echo "\\end{verbatim}" >> results.tex
+#echo "\\captionof{verbatim}{$2}" >> results.tex
+
+echo "\\begin{lstlisting}[caption={$2}]" >> results.tex
+echo "$(cat results/$3)" >> results.tex
+echo "\\end{lstlisting}" >> results.tex
+
+
+
+echo "" >> results.txt
+
+
+echo "" >> results.tex
+echo "\\begin{figure}[ht]" >> results.tex
+echo "\\centering" >> results.tex
+echo "\\includegraphics{results/$1}" >> results.tex
+echo "\\caption{$2}\label{fig:$1}" >> results.tex
+echo "\\end{figure}" >> results.tex
+echo "" >> results.tex

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+latex results.tex 2> /dev/null
+dvipdf results.dvi 2> /dev/null

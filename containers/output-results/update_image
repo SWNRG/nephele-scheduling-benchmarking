@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build -t "swnuom/output-results" .
+#docker push swnuom/output-results

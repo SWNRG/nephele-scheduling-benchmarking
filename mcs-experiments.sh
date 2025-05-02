@@ -38,83 +38,11 @@ output_format='json'
 # dry run option
 dry_run=false #true
 
-# structure of experiment output
-metrics='{
-  "placement-times": {
-    "values": [
-      ".placements.clusterPlacementTime",
-      ".placements.nodePlacementTime"
-    ],
-    "columns": [
-      "replica-1",
-      "replicas-5",
-      "replicas-10"
-    ],
-    "rows": "Cluster & Node Placement Times (ms)"
-  },
-  "cluster-cpu-utilization": {
-    "values": [
-      ".clusters[0].cpuUtilization",
-      ".clusters[1].cpuUtilization",
-      ".clusters[2].cpuUtilization"
-    ],
-    "columns": [
-      "cluster1",
-      "cluster2",
-      "cluster3"
-    ],
-    "rows": "Cluster CPU Utilization (%)"
-  },
-  "cluster-memory-utilization": {
-    "values": [
-      ".clusters[0].memoryUtilization",
-      ".clusters[1].memoryUtilization",
-      ".clusters[2].memoryUtilization"
-    ],
-    "columns": [
-      "cluster1",
-      "cluster2",
-      "cluster3"
-    ],
-    "rows": "Cluster Memory Utilization (%)"
-  },
-  "cluster-node-utilization": {
-    "values": [
-      ".clusters[0].nodeUtilization",
-      ".clusters[1].nodeUtilization",
-      ".clusters[2].nodeUtilization"
-    ],
-    "columns": [
-      "cluster1",
-      "cluster2",
-      "cluster3"
-    ],
-    "rows": "Cluster Node Utilization (%)"
-  }
-}'
-
 # Reconfigure experiment based on run_id, if it is specified
 
-if [[ -v run_id ]]; then 
-  case $run_id in
-
-    "replica-1")
-      services_replicas_sets=("1 1 1" "1 1 1") # number of times to replicate each service
-      ;;
-
-    "replicas-5")
-      services_replicas_sets=("5 5 5" "5 5 5") # number of times to replicate each service
-      ;;
-
-    "replicas-10")
-      services_replicas_sets=("10 10 10" "10 10 10") # number of times to replicate each service
-      ;;
-
-    *)
-      echo "Unknown run_id"
-      exit 1
-      ;;
-  esac
+# Reconfigure experiment, if run_id has been specified
+if [[ -v run_id ]]; then
+  source ./reconfigureExperiment.sh
 fi
 
 # Executing scheduler
@@ -212,6 +140,9 @@ for index in "${!services_names_sets[@]}"; do
   # Print all service placements
   echo "${services_placements[@]}"
 
+  #echo "Changing service placements to:"
+  #services_placements=(cluster1 cluster2 cluster3)
+  #echo "${services_placements[@]}"
   #services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
   echo ""
 
@@ -261,7 +192,7 @@ fi
 echo ""
 
 # Generating results.json
-echo -e "${GREEN}Generating results.json${NC}"
+echo -e "${GREEN}Generating results json file${NC}"
 if [ "$dry_run" != "true" ]; then
   source ./generateOutputJSON.sh
 fi

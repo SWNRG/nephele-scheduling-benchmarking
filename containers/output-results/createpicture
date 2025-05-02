@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "gnuplot plot.p > $1.eps"
+gnuplot plot.p > $1.eps
+epstopdf $1.eps 
