@@ -40,6 +40,7 @@ fi
 
 
 create_service_pods() {
+  local z=0
 
   for i in "${!services_names[@]}"; do
 
@@ -47,7 +48,7 @@ create_service_pods() {
 
     for k in $(seq 1 $replicas); do
       service_name="${services_names[$i]}$k"
-      cluster="${services_placements[$i]}"
+      cluster="${services_placements[$z]}"
       cpu="${translated_services_cpu[$i]}"
       memory="${translated_services_memory[$i]}"
 
@@ -99,7 +100,7 @@ spec:
       - name: $service_name
         image: fake-image
 EOF
-
+    ((z++))
     done
   done
 }

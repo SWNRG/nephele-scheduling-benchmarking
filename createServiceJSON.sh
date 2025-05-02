@@ -51,16 +51,18 @@ create_service_json() {
   local services_json=""
   local graph_descriptor=""
 
-  for i in "${!services_names[@]}"; do
-    if [[ "${services_placements[$i]}" == "$cluster_name" || -z "$cluster_name" ]]; then
-      local service_id="${services_names[$i]}"
-      local cpu="${services_cpu[$i]}"
-      local memory="${services_memory[$i]}"
-      local dependency="${services_dependencies[$i]}"
-      local replicas="${services_replicas[$i]}"
-      local gpu="${services_gpus[$i]}"
+  local z=0
 
-      for k in $(seq 1 $replicas); do
+  for i in "${!services_names[@]}"; do
+    local service_id="${services_names[$i]}"
+    local cpu="${services_cpu[$i]}"
+    local memory="${services_memory[$i]}"
+    local dependency="${services_dependencies[$i]}"
+    local replicas="${services_replicas[$i]}"
+    local gpu="${services_gpus[$i]}"
+
+    for k in $(seq 1 $replicas); do
+      if [[ "${services_placements[$z]}" == "$cluster_name" || -z "$cluster_name" ]]; then
         if [ -z "$services_json" ]; then
           services_json+="{\"id\": \"${service_id}$k\", \"cpu\": \"$cpu\", \"memory\": \"$memory\", \"gpu\": \"$gpu\"}"
         else
@@ -80,8 +82,9 @@ create_service_json() {
             graph_descriptor+=",\n\"${service_id}$k\": {\"dependencies\": []}"
           fi
         fi
-      done
-    fi
+      fi
+      ((z++))
+    done
   done
 
   services_json=$(echo -e "$services_json")

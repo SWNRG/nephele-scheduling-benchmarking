@@ -20,14 +20,14 @@ cluster_pods=(100 100 100)   # maximum number of pods to allocate
 cluster_gpus=(0 0 0)
 
 # Define service slices configuration (each set is being deployed with a period defined in placement_period variable)
-services_names_sets=("lightmemory heavymemory lightcpu" "mediumcpu secondheavymemory heavycpu") # use different names per service!
+services_names_sets=("lightmemory heavymemory lightcpu mediumcpu secondheavymemory heavycpu") # use different names per service!
 # if services_placements is specified, it skips multi-cluster placement process
 #services_placements=("cluster1" "cluster1" "cluster2" "cluster2" "cluster3" "cluster3")
-services_dependencies_sets=("heavymemory heavymemory mediumcpu" "heavycpu heavycpu heavycpu")
-services_cpu_sets=("light light light" "medium light large")
-services_memory_sets=("light large light" "light large light")
-services_replicas_sets=("1 1 1" "1 1 1") # number of times to replicate each service
-services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceleration or not
+services_dependencies_sets=("heavymemory heavymemory mediumcpu heavycpu heavycpu heavycpu")
+services_cpu_sets=("light light light medium light large")
+services_memory_sets=("light large light light large light")
+services_replicas_sets=("10 10 10 10 10 10") # number of times to replicate each service
+services_gpus_sets=("0 0 0 0 0 0") # whether each service requires gpu acceleration or not
 
 # service placement period (in secs)
 placement_period=60
@@ -36,7 +36,7 @@ placement_period=60
 output_format='json'
 
 # dry run option
-dry_run=true #true
+dry_run=false #true
 
 # Reconfigure experiment based on run_id, if it is specified
 
