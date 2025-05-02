@@ -36,7 +36,7 @@ placement_period=60
 output_format='json'
 
 # dry run option
-dry_run=false #true
+dry_run=true #true
 
 # Reconfigure experiment based on run_id, if it is specified
 

@@ -98,4 +98,4 @@ if [[ -v run_id ]]; then
 else
   echo "$results" > results.json
 fi
-echo -e "${GREEN}Results saved to results.json${NC}"
+echo -e "${GREEN}Results saved to json file${NC}"

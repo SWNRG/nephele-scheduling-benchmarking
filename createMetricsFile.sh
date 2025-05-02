@@ -1,12 +1,9 @@
 #!/bin/bash
 
-# import basic input
-runs=$run_ids
-
 # create metrics substring
 counter=2  # Start counter at 2
 substring=""
-for run in $runs;
+for run in "${runs[@]}";
 do
    # create metrics substring
    substring="$substring $run $counter"

@@ -1,0 +1,82 @@
+\documentclass{elsart}
+
+\usepackage{graphicx}
+
+\usepackage{amssymb}
+
+\usepackage{listings}
+
+\lstset{
+    breaklines=true,
+    breakatwhitespace=true
+}
+
+\begin{document}
+
+\section{Plotting all figures}
+\subsection{}
+
+\begin{lstlisting}[caption={Cluster and Node Placement Times}]
+Cluster and Node Placement Times (ms)
+replications cluster-placement-time node-placement-time
+replica-1 0.00 1.00
+replicas-5 0.00 4.00
+replicas-10 0.00 6.00
+\end{lstlisting}
+
+\begin{figure}[ht]
+\centering
+\includegraphics{results/placement-times.eps}
+\caption{Cluster and Node Placement Times}\label{fig:placement-times.eps}
+\end{figure}
+
+\subsection{}
+
+\begin{lstlisting}[caption={Cluster CPU Utilization}]
+Cluster CPU Utilization (%)
+replications cluster-1 cluster-2 cluster-3
+replica-1 21.00 0.00 0.00
+replicas-5 11.00 0.00 0.00
+replicas-10 23.00 0.00 0.00
+\end{lstlisting}
+
+\begin{figure}[ht]
+\centering
+\includegraphics{results/cluster-cpu-utilization.eps}
+\caption{Cluster CPU Utilization}\label{fig:cluster-cpu-utilization.eps}
+\end{figure}
+
+\subsection{}
+
+\begin{lstlisting}[caption={Cluster Memory Utilization}]
+Cluster Memory Utilization (%)
+replications cluster-1 cluster-2 cluster-3
+replica-1 3.00 0.00 0.00
+replicas-5 8.00 0.00 0.00
+replicas-10 17.00 0.00 0.00
+\end{lstlisting}
+
+\begin{figure}[ht]
+\centering
+\includegraphics{results/cluster-memory-utilization.eps}
+\caption{Cluster Memory Utilization}\label{fig:cluster-memory-utilization.eps}
+\end{figure}
+
+\subsection{}
+
+\begin{lstlisting}[caption={Cluster Node Utilization}]
+Cluster Node Utilization (%)
+replications cluster-1 cluster-2 cluster-3
+replica-1 100.00 0.00 0.00
+replicas-5 50.00 0.00 0.00
+replicas-10 50.00 0.00 0.00
+\end{lstlisting}
+
+\begin{figure}[ht]
+\centering
+\includegraphics{results/cluster-node-utilization.eps}
+\caption{Cluster Node Utilization}\label{fig:cluster-node-utilization.eps}
+\end{figure}
+
+
+\end{document}

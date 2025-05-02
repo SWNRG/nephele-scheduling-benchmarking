@@ -38,7 +38,9 @@ while IFS= read -r line; do
 
     # Generate figures
     echo "generating figure"
-    gnuplot plot.p > /root/results/$metric_name.eps
+    gnuplot plot.p > /root/results/${metric_name}.eps
+    # Keep plot file
+    cp plot.p /root/results/${metric_name}.p
 
     #echo "generating pdf files"
 
@@ -61,6 +63,6 @@ mv /root/results.pdf /root/results/
 mv /root/results.tex /root/results/
 
 # delete temporary files
-rm /root/results/*.t
-rm /root/results/*.o
-rm /root/results/*.s
+#rm /root/results/*.t 2> /dev/null
+#rm /root/results/*.o 2> /dev/null
+#rm /root/results/*.s 2> /dev/null

@@ -17,11 +17,11 @@ metrics='{
       ".placements.nodePlacementTime"
     ],
     "columns": [
-      "replica-1",
-      "replicas-5",
-      "replicas-10"
+      "replications",
+      "cluster-placement-time",
+      "node-placement-time"
     ],
-    "rows": "Cluster & Node Placement Times (ms)"
+    "rows": "Cluster and Node Placement Times (ms)"
   },
   "cluster-cpu-utilization": {
     "values": [
@@ -30,9 +30,10 @@ metrics='{
       ".clusters[2].cpuUtilization"
     ],
     "columns": [
-      "cluster1",
-      "cluster2",
-      "cluster3"
+      "replications",
+      "cluster-1",
+      "cluster-2",
+      "cluster-3"
     ],
     "rows": "Cluster CPU Utilization (%)"
   },
@@ -43,9 +44,10 @@ metrics='{
       ".clusters[2].memoryUtilization"
     ],
     "columns": [
-      "cluster1",
-      "cluster2",
-      "cluster3"
+      "replications",
+      "cluster-1",
+      "cluster-2",
+      "cluster-3"
     ],
     "rows": "Cluster Memory Utilization (%)"
   },
@@ -56,9 +58,10 @@ metrics='{
       ".clusters[2].nodeUtilization"
     ],
     "columns": [
-      "cluster1",
-      "cluster2",
-      "cluster3"
+      "replications",
+      "cluster-1",
+      "cluster-2",
+      "cluster-3"
     ],
     "rows": "Cluster Node Utilization (%)"
   }
@@ -68,7 +71,7 @@ graphs='[
     {
         "name": "placement-times",
         "filename": "placement-times.csv",
-        "title": "Cluster & Node Placement Times",
+        "title": "Cluster and Node Placement Times",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",
@@ -78,7 +81,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "auto",
         "boxvertical": "top",
-        "boxhorizontal": "right",
+        "boxhorizontal": "left",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -94,7 +97,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "left",
+        "boxhorizontal": "right",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -109,7 +112,7 @@ graphs='[
         "ylabel": "Memory (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
-        "boxvertical": "bottom",
+        "boxvertical": "top",
         "boxhorizontal": "right",
         "xticksrotate": "-45 scale 0"
     },
@@ -126,7 +129,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "left",
+        "boxhorizontal": "right",
         "xticksrotate": "-45 scale 0"
     }
 ]'
