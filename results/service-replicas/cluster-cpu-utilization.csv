@@ -1,5 +1,5 @@
 Cluster CPU Utilization (%)
 replications cluster-1 cluster-2 cluster-3
 replica-1 21.00 0.00 0.00
-replicas-5 11.00 0.00 0.00
-replicas-10 91.00 0.00 62.00
+replicas-5 96.00 0.00 12.00
+replicas-10 93.00 25.00 99.00

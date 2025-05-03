@@ -1,0 +1,80 @@
+{
+  "placements": {
+    "clusterPlacementTime": 7,
+    "nodePlacementTime": 22
+  },
+  "clusters": [
+    {
+      "name": "cluster1",
+      "cpuUtilization": 93,
+      "memoryUtilization": 34,
+      "nodeUtilization": 100
+    },
+    {
+      "name": "cluster2",
+      "cpuUtilization": 24,
+      "memoryUtilization": 0,
+      "nodeUtilization": 50
+    },
+    {
+      "name": "cluster3",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster4",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster5",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "clustr6",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster7",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster8",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster9",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster10",
+      "cpuUtilization": 99,
+      "memoryUtilization": 0,
+      "nodeUtilization": 100
+    }
+  ],
+  "nodes": [
+    {
+      "name": "kwok-node-1",
+      "cpuUtilization": 74,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "kwok-node-2",
+      "cpuUtilization": 125,
+      "memoryUtilization": 0
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # specify run ids (check reconfigureExperiment.sh)
-runs=("replica-1" "replicas-5" "replicas-10")
+runs=("clusters-3" "clusters-5" "clusters-10")
 
 # number of replications
 replications_number=1
 
 # name of experiment
-experiment_name="service-replicas"
+experiment_name="range-clusters"
 
 # wait time between experiments
 experiment_wait_time=60
@@ -20,7 +20,7 @@ metrics='{
       ".placements.nodePlacementTime"
     ],
     "columns": [
-      "replications",
+      "clusters",
       "cluster-placement-time",
       "node-placement-time"
     ],
@@ -30,13 +30,27 @@ metrics='{
     "values": [
       ".clusters[0].cpuUtilization",
       ".clusters[1].cpuUtilization",
-      ".clusters[2].cpuUtilization"
+      ".clusters[2].cpuUtilization",
+      ".clusters[3].cpuUtilization",
+      ".clusters[4].cpuUtilization",
+      ".clusters[5].cpuUtilization",
+      ".clusters[6].cpuUtilization",
+      ".clusters[7].cpuUtilization",
+      ".clusters[8].cpuUtilization",
+      ".clusters[9].cpuUtilization"
     ],
     "columns": [
-      "replications",
+      "clusters",
       "cluster-1",
       "cluster-2",
-      "cluster-3"
+      "cluster-3",
+      "cluster-4",
+      "cluster-5",
+      "cluster-6",
+      "cluster-7",
+      "cluster-8",
+      "cluster-9",
+      "cluster-10"
     ],
     "rows": "Cluster CPU Utilization (%)"
   },
@@ -44,13 +58,27 @@ metrics='{
     "values": [
       ".clusters[0].memoryUtilization",
       ".clusters[1].memoryUtilization",
-      ".clusters[2].memoryUtilization"
+      ".clusters[2].memoryUtilization",
+      ".clusters[3].memoryUtilization",
+      ".clusters[4].memoryUtilization",
+      ".clusters[5].memoryUtilization",
+      ".clusters[6].memoryUtilization",
+      ".clusters[7].memoryUtilization",
+      ".clusters[8].memoryUtilization",
+      ".clusters[9].memoryUtilization"
     ],
     "columns": [
-      "replications",
+      "clusters",
       "cluster-1",
       "cluster-2",
-      "cluster-3"
+      "cluster-3",
+      "cluster-4",
+      "cluster-5",
+      "cluster-6",
+      "cluster-7",
+      "cluster-8",
+      "cluster-9",
+      "cluster-10"
     ],
     "rows": "Cluster Memory Utilization (%)"
   },
@@ -58,13 +86,27 @@ metrics='{
     "values": [
       ".clusters[0].nodeUtilization",
       ".clusters[1].nodeUtilization",
-      ".clusters[2].nodeUtilization"
+      ".clusters[2].nodeUtilization",
+      ".clusters[3].nodeUtilization",
+      ".clusters[4].nodeUtilization",
+      ".clusters[5].nodeUtilization",
+      ".clusters[6].nodeUtilization",
+      ".clusters[7].nodeUtilization",
+      ".clusters[8].nodeUtilization",
+      ".clusters[9].nodeUtilization"
     ],
     "columns": [
-      "replications",
+      "clusters",
       "cluster-1",
       "cluster-2",
-      "cluster-3"
+      "cluster-3",
+      "cluster-4",
+      "cluster-5",
+      "cluster-6",
+      "cluster-7",
+      "cluster-8",
+      "cluster-9",
+      "cluster-10"
     ],
     "rows": "Cluster Node Utilization (%)"
   }

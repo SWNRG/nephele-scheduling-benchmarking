@@ -26,7 +26,7 @@ services_names_sets=("lightmemory heavymemory lightcpu" "mediumcpu secondheavyme
 services_dependencies_sets=("heavymemory heavymemory mediumcpu" "heavycpu heavycpu heavycpu")
 services_cpu_sets=("light light light" "medium light large")
 services_memory_sets=("light large light" "light large light")
-services_replicas_sets=("5 5 5" "5 5 5") # number of times to replicate each service
+services_replicas_sets=("10 10 10" "10 10 10") # number of times to replicate each service
 services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceleration or not
 
 # service placement period (in secs)
@@ -38,8 +38,6 @@ output_format='json'
 # dry run option
 dry_run=false #true
 
-# Reconfigure experiment based on run_id, if it is specified
-
 # Reconfigure experiment, if run_id has been specified
 if [[ -v run_id ]]; then
   source ./reconfigureExperiment.sh
@@ -48,7 +46,7 @@ fi
 # Executing scheduler
 echo -e "${GREEN}Executing scheduler${NC}"
 if [ "$dry_run" != "true" ]; then
-  #source ./executeScheduler.sh
+  source ./executeScheduler.sh
   # wait 5 secs
   sleep 5
 fi
