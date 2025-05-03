@@ -12,4 +12,4 @@ docker stop scheduler 2> /dev/null > /dev/null
 docker remove scheduler 2> /dev/null > /dev/null
 
 # execute scheduler as a daemon
-docker run -d --name scheduler --net=host -v $HOME/.kube/config:/root/.kube/config -v $HOME/.kwok/:$HOME/.kwok/ scheduler
+docker run --name scheduler --net=host -v $HOME/.kube/config:/root/.kube/config -v $HOME/.kwok/:$HOME/.kwok/ scheduler

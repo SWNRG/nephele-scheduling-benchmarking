@@ -107,7 +107,7 @@ def get_cluster_metrics(context_name):
         else:
             for current_context in contexts:
                 config.load_kube_config(context=current_context['name'], config_file="/root/.kube/config")
-                calculate_cluster_metrics(cluster_metrics, current_context['name'])
+                cluster_metrics = calculate_cluster_metrics(cluster_metrics, current_context['name'])
 
         return cluster_metrics
 
@@ -126,7 +126,7 @@ def calculate_cluster_metrics(cluster_metrics, context_name):
         metrics_client = client.CustomObjectsApi()
 
         nodes = v1_client.list_node()
-        #acluster_metrics = {}
+        #cluster_metrics = {}
         gpu_nodes = []
 
         total_cpu = 0
@@ -141,15 +141,11 @@ def calculate_cluster_metrics(cluster_metrics, context_name):
             node_name = node.metadata.name
             labels = node.metadata.labels
 
-            logger.info("Checking node "+node_name)
-
             # Skip master/control-plane and unschedulable nodes
             if "node-role.kubernetes.io/master" in labels or "node-role.kubernetes.io/control-plane" in labels:
                 continue
             #if node.spec.unschedulable:
             #    continue
-
-            logger.info("Go on...")
 
             capacity = node.status.capacity
             total_cpu = total_cpu + parse_cpu(capacity.get("cpu"))
@@ -172,9 +168,11 @@ def calculate_cluster_metrics(cluster_metrics, context_name):
             except client.exceptions.ApiException as e:
 
                 if e.status == 404:
+                    logger.info("Missing measurement for node:" + node_name)
+
                     #continue
-                    used_cpu = 0
-                    used_memory = 0
+                    #used_cpu = 0
+                    #used_memory = 0
                 else:
                     raise
 
@@ -190,6 +188,9 @@ def calculate_cluster_metrics(cluster_metrics, context_name):
                 "available_memory": available_memory,
                 "gpu": gpu,  
             }
+
+            logger.info("Checking node "+node_name+", cumulative available cpu is "+str(available_cpu))
+
 
         return cluster_metrics
     except Exception as e:

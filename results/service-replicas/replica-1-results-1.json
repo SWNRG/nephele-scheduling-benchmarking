@@ -1,7 +1,7 @@
 {
   "placements": {
     "clusterPlacementTime": 0,
-    "nodePlacementTime": 0
+    "nodePlacementTime": 1
   },
   "clusters": [
     {

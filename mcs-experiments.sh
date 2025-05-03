@@ -26,11 +26,11 @@ services_names_sets=("lightmemory heavymemory lightcpu" "mediumcpu secondheavyme
 services_dependencies_sets=("heavymemory heavymemory mediumcpu" "heavycpu heavycpu heavycpu")
 services_cpu_sets=("light light light" "medium light large")
 services_memory_sets=("light large light" "light large light")
-services_replicas_sets=("1 1 1" "1 1 1") # number of times to replicate each service
+services_replicas_sets=("5 5 5" "5 5 5") # number of times to replicate each service
 services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceleration or not
 
 # service placement period (in secs)
-placement_period=60
+placement_period=120
 
 # format of experiment output (e.g., json)
 output_format='json'
@@ -48,7 +48,7 @@ fi
 # Executing scheduler
 echo -e "${GREEN}Executing scheduler${NC}"
 if [ "$dry_run" != "true" ]; then
-  source ./executeScheduler.sh
+  #source ./executeScheduler.sh
   # wait 5 secs
   sleep 5
 fi

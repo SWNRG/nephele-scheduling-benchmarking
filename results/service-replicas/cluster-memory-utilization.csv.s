@@ -1,4 +1,0 @@
-replications cluster-1 cluster-2 cluster-3
-replica-1 3.00 0.00 0.00
-replicas-5 10.00 0.00 0.00
-replicas-10 19.00 0.00 0.00
