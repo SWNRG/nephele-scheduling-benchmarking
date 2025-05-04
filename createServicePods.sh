@@ -53,8 +53,8 @@ create_service_pods() {
       memory="${translated_services_memory[$i]}"
 
       # calculate appropriate placement number
-      p=$((i + k - 1))
-      placement="${placements[$p]}"
+      #p=$((i + k - 1))
+      placement="${placements[$z]}"
 
       echo "Service $service_name is being placed in cluster $cluster and node $placement"
 

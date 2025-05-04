@@ -60,6 +60,7 @@ def heuristic(worker_nodes, services, graph_descriptor=None):
                         temporary_load[node_name]['gpu'] += 1
                     service_mapped = True
                     logger.info(f"Service '{service['id']}' mapped to node '{node_name}'")
+                    logger.info("temporary_load of node " + str(node_name) +" is "+str(temporary_load[node_name])+" of resources "+str(resources['available_cpu']))
                     break
 
             if not service_mapped:
