@@ -4,7 +4,7 @@
 runs=("clusters-3" "clusters-5" "clusters-10")
 
 # number of replications
-replications_number=1
+replications_number=10
 
 # name of experiment
 experiment_name="range-clusters"

@@ -1,18 +1,18 @@
 {
   "placements": {
     "clusterPlacementTime": 0,
-    "nodePlacementTime": 17
+    "nodePlacementTime": 35
   },
   "clusters": [
     {
       "name": "cluster1",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 43,
       "nodeUtilization": 100
     },
     {
       "name": "cluster2",
-      "cpuUtilization": 50,
+      "cpuUtilization": 49,
       "memoryUtilization": 0,
       "nodeUtilization": 100
     },

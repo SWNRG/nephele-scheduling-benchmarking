@@ -35,7 +35,7 @@ case $run_id in
     ;;
 
   "clusters-10")
-    cluster_names=("cluster1" "cluster2" "cluster3" "cluster4" "cluster5" "clustr6" "cluster7" "cluster8" "cluster9" "cluster10")  
+    cluster_names=("cluster1" "cluster2" "cluster3" "cluster4" "cluster5" "cluster6" "cluster7" "cluster8" "cluster9" "cluster10")  
     cluster_nodes=(2 2 2 2 2 2 2 2 2 2) 
     cluster_cpu=(32 32 32 32 32 32 32 32 32 32)  
     cluster_memory=("256Gi" "256Gi" "256Gi" "256Gi" "256Gi" "256Gi" "256Gi" "256Gi" "256Gi" "256Gi")  
