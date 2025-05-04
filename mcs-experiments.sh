@@ -30,7 +30,7 @@ services_replicas_sets=("10 10 10" "10 10 10") # number of times to replicate ea
 services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceleration or not
 
 # service placement period (in secs)
-placement_period=120
+placement_period=60
 
 # format of experiment output (e.g., json)
 output_format='json'

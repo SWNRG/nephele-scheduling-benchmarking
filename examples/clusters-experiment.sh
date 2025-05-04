@@ -179,6 +179,9 @@ graphs='[
     }
 ]'
 
+# go to main folder
+cd ..
+
 # create results folder, if it does not exist
 mkdir results/${experiment_name} 2> /dev/null
 

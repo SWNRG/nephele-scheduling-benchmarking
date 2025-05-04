@@ -163,12 +163,16 @@ def decide_placement(
 
     problem = cp.Problem(objective, constraints)
     problem.solve(solver=cp.GLPK_MI, qcp=True)
+    
+    logger.info(f"Solver status: {problem.status}")
+    if problem.status not in ["optimal", "optimal_inaccurate"]:
+      logger.error(f"Problem not solved optimally: {problem.status}")
+      return None
 
     placement2d = [[int(x.value[s, e]) for e in range(num_clusters)] for s in range(num_nodes)]
      # Instead of 2D matrix, find for each service which cluster it is placed on
 
     logger.info(f"2D placement: {placement2d}")
-
 
     x_val = x.value
     placement = [int(np.argmax(x_val[s])) for s in range(num_nodes)]
