@@ -1,5 +1,5 @@
 Cluster and Node Placement Times (ms)
 clusters cluster-placement-time node-placement-time
-clusters-3 0.30 31.60
-clusters-5 0.70 18.20
-clusters-10 6.30 30.80
+clusters-3 1,00 4,00
+clusters-5 3,00 8,00
+clusters-10 3,00 15,00

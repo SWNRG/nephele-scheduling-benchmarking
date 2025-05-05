@@ -148,10 +148,11 @@ def decide_placement(
 
     # Constraint 3: Acceleration feature constraints
     for s in range(1, num_nodes):  # Assuming s0 has no acceleration constraint
-        for e in range(num_clusters):
-            constraints.append(
-                x[s, e] * acceleration[s] <= cluster_acceleration[e]
-            )
+        if acceleration[s]:  # Only apply if service needs GPU
+            for e in range(num_clusters):
+                constraints.append(
+                    x[s, e] * acceleration[s] <= cluster_acceleration[e]
+                )
 
     # Constraint 4: Dependency constraint - This is adjusted to avoid recursion
     # Ensure no cyclic dependency by rethinking how dependencies are handled
@@ -162,11 +163,12 @@ def decide_placement(
             constraints.append(x[i, e] + x[i - 1, e] >= d[i - 1])
 
     problem = cp.Problem(objective, constraints)
-    problem.solve(solver=cp.GLPK_MI, qcp=True)
+    problem.solve(solver=cp.GLPK_MI, qcp=True, verbose=True)  #qcp=True
     
     logger.info(f"Solver status: {problem.status}")
     if problem.status not in ["optimal", "optimal_inaccurate"]:
       logger.error(f"Problem not solved optimally: {problem.status}")
+      logger.error(f"Solver was unable to find a feasible solution. Constraints might be too restrictive.")
       return None
 
     placement2d = [[int(x.value[s, e]) for e in range(num_clusters)] for s in range(num_nodes)]

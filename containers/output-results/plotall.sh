@@ -64,5 +64,5 @@ mv /root/results.tex /root/results/
 
 # delete temporary files
 rm /root/results/*.t 2> /dev/null
-rm /root/results/*.o 2> /dev/null
+#rm /root/results/*.o 2> /dev/null
 rm /root/results/*.s 2> /dev/null

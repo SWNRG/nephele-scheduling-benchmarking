@@ -10,7 +10,7 @@ set ylabel font 'Courier,18'
 set title font 'Courier,18'
 set key font 'Courier,16'
 set ytic auto
-set title 'Cluster CPU Utilization'
+set title 'Node CPU Utilization'
 set xlabel 'Cluster'
 set ylabel 'CPU (%)'
 set yrange [0:100]
@@ -31,8 +31,6 @@ set style line 6 lc rgb '#555555' lw 3 pt 4 ps 1.5
 set style line 7 lc rgb '#000000' lw 3 dt 3 pt 5 ps 1.5
 # Line style 8: Dash-dot line with thicker gray markers
 set style line 8 lc rgb '#555555' lw 4 dt 1 pt 2 ps 1.5
-plot '/root/results/cluster-cpu-utilization.csv.s.t' using 2:xtic(1) title 'replica-1' with linespoints ls 1\
-, '/root/results/cluster-cpu-utilization.csv.s.t' using 3 title 'replicas-5' with linespoints ls 2\
-, '/root/results/cluster-cpu-utilization.csv.s.t' using 4 title 'replicas-10' with linespoints ls 3\
-, '/root/results/cluster-cpu-utilization.csv.s.t' using 5 title 'replicas-20' with linespoints ls 4\
-, '/root/results/cluster-cpu-utilization.csv.s.t' using 6 title 'replicas-30' with linespoints ls 5
+plot '/root/results/node-cpu-utilization.csv.s.t' using 2:xtic(1) title 'clusters-3' with linespoints ls 1\
+, '/root/results/node-cpu-utilization.csv.s.t' using 3 title 'clusters-5' with linespoints ls 2\
+, '/root/results/node-cpu-utilization.csv.s.t' using 4 title 'clusters-10' with linespoints ls 3

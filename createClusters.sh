@@ -77,7 +77,7 @@ metadata:
   annotations:
     node.alpha.kubernetes.io/ttl: "0"
     kwok.x-k8s.io/node: fake
-    metrics.k8s.io/resource-metrics-path: "/metrics/nodes/kwok-node-$k/metrics/resource"
+    metrics.k8s.io/resource-metrics-path: "/metrics/nodes/${cluster_name}-node-$k/metrics/resource"
   labels:
 EOF
 )
@@ -91,12 +91,12 @@ yaml="${yaml}
     beta.kubernetes.io/arch: amd64
     beta.kubernetes.io/os: linux
     kubernetes.io/arch: amd64
-    kubernetes.io/hostname: \"kwok-node-$k\"
+    kubernetes.io/hostname: \"${cluster_name}-node-$k\"
     kubernetes.io/os: linux
     kubernetes.io/role: agent
     node-role.kubernetes.io/agent: \"\"
     type: kwok
-  name: \"kwok-node-$k\"
+  name: \"${cluster_name}-node-$k\"
 spec:
   taints: # Avoid scheduling actual running pods to fake Node
   - effect: NoSchedule

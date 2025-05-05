@@ -101,6 +101,21 @@ for i in "${!cluster_names[@]}"; do
     cluster_cpu_utilization["$cluster"]=0
     cluster_memory_utilization["$cluster"]=0
     cluster_node_utilization["$cluster"]=0
+
+    # fill in node metrics
+    # get all nodes now
+    all_nodes=$(kwokctl --name=$cluster kubectl get nodes --no-headers 2>/dev/null)
+    while read -r line; do
+      node_name=$(echo "$line" | awk '{print $1}')
+      cpu_usage=0
+      mem_usage=0
+
+      # track unutilized nodes
+      node_cpu_utilization["$node_name"]=0
+      node_memory_utilization["$node_name"]=0
+
+    done <<< "$all_nodes"
+
   else
     while read -r line; do
       node_name=$(echo "$line" | awk '{print $1}')
@@ -108,8 +123,9 @@ for i in "${!cluster_names[@]}"; do
       mem_usage_raw=$(echo "$line" | awk '{print $4}')
 
       if [[ "$cpu_usage" == "<unknown>" || "$mem_usage_raw" == "<unknown>" ]]; then
-	# skip node, it has unknown resources.
-        continue
+	# keep node with zero utilized resources, it has unknown resources.
+	cpu_usage=0
+	mem_usage=0
       fi
 
       # Normalize memory to Ki

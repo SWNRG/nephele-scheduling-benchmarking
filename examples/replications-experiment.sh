@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # specify run ids (check reconfigureExperiment.sh)
-runs=("replica-1" "replicas-5" "replicas-10")
+runs=("replica-1" "replicas-5" "replicas-10" "replicas-20" "replicas-30")
+#runs=("replicas-10")
 
 # number of replications
 replications_number=1
@@ -67,6 +68,46 @@ metrics='{
       "cluster-3"
     ],
     "rows": "Cluster Node Utilization (%)"
+  },
+  "node-cpu-utilization": {
+    "values": [
+      ".nodes[0].cpuUtilization",
+      ".nodes[1].cpuUtilization",
+      ".nodes[2].cpuUtilization",
+      ".nodes[3].cpuUtilization",
+      ".nodes[4].cpuUtilization",
+      ".nodes[5].cpuUtilization"
+    ],
+    "columns": [
+      "nodes",
+      "cluster-1-node1",
+      "cluster-1-node2",
+      "cluster-2-node1",
+      "cluster-2-node2",
+      "cluster-3-node1",
+      "cluster-3-node2"
+    ],
+    "rows": "Node CPU Utilization (%)"
+  },
+  "node-memory-utilization": {
+    "values": [
+      ".nodes[0].memoryUtilization",
+      ".nodes[1].memoryUtilization",
+      ".nodes[2].memoryUtilization",
+      ".nodes[3].memoryUtilization",
+      ".nodes[4].memoryUtilization",
+      ".nodes[5].memoryUtilization"
+    ],
+    "columns": [
+      "nodes",
+      "cluster-1-node1",
+      "cluster-1-node2",
+      "cluster-2-node1",
+      "cluster-2-node2",
+      "cluster-3-node1",
+      "cluster-3-node2"
+    ],
+    "rows": "Node Memory Utilization (%)"
   }
 }'
 
@@ -134,6 +175,38 @@ graphs='[
         "boxvertical": "top",
         "boxhorizontal": "right",
         "xticksrotate": "-45 scale 0"
+    },
+    {
+        "name": "node-cpu-utilization",
+        "filename": "node-cpu-utilization.csv",
+        "title": "Node CPU Utilization",
+        "striptitle": "yes",
+        "transpose": "yes",
+        "filterkeyword": "no",
+        "removekeyword": "no",
+        "xlabel": "Cluster",
+        "ylabel": "CPU (%)",
+        "xrange": "auto",
+        "yrange": "[0:100]",
+        "boxvertical": "top",
+        "boxhorizontal": "right",
+        "xticksrotate": "-45 scale 0"
+    },
+    {
+        "name": "node-memory-utilization",
+        "filename": "node-memory-utilization.csv",
+        "title": "Node Memory Utilization",
+        "striptitle": "yes",
+        "transpose": "yes",
+        "filterkeyword": "no",
+        "removekeyword": "no",
+        "xlabel": "Cluster",
+        "ylabel": "Memory (%)",
+        "xrange": "auto",
+        "yrange": "[0:100]",
+        "boxvertical": "top",
+        "boxhorizontal": "right",
+        "xticksrotate": "-45 scale 0"
     }
 ]'
 
@@ -143,7 +216,8 @@ cd ..
 # create results folder, if it does not exist
 mkdir results/${experiment_name} 2> /dev/null
 
-for run_id in "${runs[@]}"; do
+for j in "${!runs[@]}"; do
+  run_id="${runs[$j]}"
   echo "Executing run_id: $run_id"
 
   # loop according to the replication number
@@ -151,8 +225,13 @@ for run_id in "${runs[@]}"; do
   do
     echo "Executing replication: $replication"
     source ./mcs-experiments.sh
-    echo "Waiting a bit between experiments"
-    sleep $experiment_wait_time
+
+    # Only sleep if it's not the last replication of the last run
+    if ! [[ "$j" == "$((${#runs[@]} - 1))" && $replication == $replications_number || $dry_run == "true" ]]; then
+      echo "Waiting a bit between experiments"
+      sleep $experiment_wait_time
+      echo ""
+    fi
   done
 done
 

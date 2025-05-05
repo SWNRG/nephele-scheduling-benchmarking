@@ -33,4 +33,6 @@ set style line 7 lc rgb '#000000' lw 3 dt 3 pt 5 ps 1.5
 set style line 8 lc rgb '#555555' lw 4 dt 1 pt 2 ps 1.5
 plot '/root/results/cluster-node-utilization.csv.s.t' using 2:xtic(1) title 'replica-1' with linespoints ls 1\
 , '/root/results/cluster-node-utilization.csv.s.t' using 3 title 'replicas-5' with linespoints ls 2\
-, '/root/results/cluster-node-utilization.csv.s.t' using 4 title 'replicas-10' with linespoints ls 3
+, '/root/results/cluster-node-utilization.csv.s.t' using 4 title 'replicas-10' with linespoints ls 3\
+, '/root/results/cluster-node-utilization.csv.s.t' using 5 title 'replicas-20' with linespoints ls 4\
+, '/root/results/cluster-node-utilization.csv.s.t' using 6 title 'replicas-30' with linespoints ls 5

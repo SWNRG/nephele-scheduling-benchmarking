@@ -1,5 +1,5 @@
 Cluster CPU Utilization (%)
 clusters cluster-1 cluster-2 cluster-3 cluster-4 cluster-5 cluster-6 cluster-7 cluster-8 cluster-9 cluster-10
-clusters-3 97.40 44.90 92.20 0.00 0.00 0.00 0.00 0.00 0.00 0.00
-clusters-5 98.00 99.40 6.00 0.00 99.70 0.00 0.00 0.00 0.00 0.00
-clusters-10 98.00 99.50 6.00 0.00 0.00 0.00 0.00 0.00 0.00 99.90
+clusters-3 82,00 93,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 96,00 100,00 99,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 99,00 100,00 99,00 99,00 100,00 40,00 0,00 0,00 0,00 100,00

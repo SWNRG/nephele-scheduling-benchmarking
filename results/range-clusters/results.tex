@@ -19,9 +19,9 @@
 \begin{lstlisting}[caption={Cluster and Node Placement Times}]
 Cluster and Node Placement Times (ms)
 clusters cluster-placement-time node-placement-time
-clusters-3 0.30 31.60
-clusters-5 0.70 18.20
-clusters-10 6.30 30.80
+clusters-3 1,00 4,00
+clusters-5 3,00 8,00
+clusters-10 3,00 15,00
 \end{lstlisting}
 
 \begin{figure}[ht]
@@ -35,9 +35,9 @@ clusters-10 6.30 30.80
 \begin{lstlisting}[caption={Cluster CPU Utilization}]
 Cluster CPU Utilization (%)
 clusters cluster-1 cluster-2 cluster-3 cluster-4 cluster-5 cluster-6 cluster-7 cluster-8 cluster-9 cluster-10
-clusters-3 97.40 44.90 92.20 0.00 0.00 0.00 0.00 0.00 0.00 0.00
-clusters-5 98.00 99.40 6.00 0.00 99.70 0.00 0.00 0.00 0.00 0.00
-clusters-10 98.00 99.50 6.00 0.00 0.00 0.00 0.00 0.00 0.00 99.90
+clusters-3 82,00 93,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 96,00 100,00 99,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 99,00 100,00 99,00 99,00 100,00 40,00 0,00 0,00 0,00 100,00
 \end{lstlisting}
 
 \begin{figure}[ht]
@@ -51,9 +51,9 @@ clusters-10 98.00 99.50 6.00 0.00 0.00 0.00 0.00 0.00 0.00 99.90
 \begin{lstlisting}[caption={Cluster Memory Utilization}]
 Cluster Memory Utilization (%)
 clusters cluster-1 cluster-2 cluster-3 cluster-4 cluster-5 cluster-6 cluster-7 cluster-8 cluster-9 cluster-10
-clusters-3 41.60 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
-clusters-5 39.00 1.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00
-clusters-10 39.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00
+clusters-3 47,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 51,00 0,00 1,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 75,00 0,00 0,00 1,00 1,00 5,00 0,00 0,00 0,00 2,00
 \end{lstlisting}
 
 \begin{figure}[ht]
@@ -67,15 +67,47 @@ clusters-10 39.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00
 \begin{lstlisting}[caption={Cluster Node Utilization}]
 Cluster Node Utilization (%)
 clusters cluster-1 cluster-2 cluster-3 cluster-4 cluster-5 cluster-6 cluster-7 cluster-8 cluster-9 cluster-10
-clusters-3 100.00 90.00 100.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
-clusters-5 100.00 100.00 50.00 0.00 100.00 0.00 0.00 0.00 0.00 0.00
-clusters-10 100.00 100.00 50.00 0.00 0.00 0.00 0.00 0.00 0.00 100.00
+clusters-3 100,00 100,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 100,00 100,00 100,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 100,00 100,00 100,00 100,00 100,00 100,00 0,00 0,00 0,00 100,00
 \end{lstlisting}
 
 \begin{figure}[ht]
 \centering
 \includegraphics{results/cluster-node-utilization.eps}
 \caption{Cluster Node Utilization}\label{fig:cluster-node-utilization.eps}
+\end{figure}
+
+\subsection{}
+
+\begin{lstlisting}[caption={Node CPU Utilization}]
+Node CPU Utilization (%)
+nodes cluster-1-node1 cluster-1-node2 cluster-2-node1 cluster-2-node2 cluster-3-node1 cluster-3-node2 cluster-4-node1 cluster-4-node2 cluster-5-node1 cluster-5-node2 cluster-6-node1 cluster-6-node2 cluster-7-node1 cluster-7-node2 cluster-8-node1 cluster-8-node2 cluster-9-node1 cluster-9-node2 cluster-10-node1 cluster-10-node2
+clusters-3 67,00 96,00 99,00 87,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 99,00 92,00 100,00 100,00 100,00 99,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 100,00 98,00 100,00 100,00 100,00 99,00 100,00 99,00 100,00 100,00 81,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 100,00 100,00
+\end{lstlisting}
+
+\begin{figure}[ht]
+\centering
+\includegraphics{results/node-cpu-utilization.eps}
+\caption{Node CPU Utilization}\label{fig:node-cpu-utilization.eps}
+\end{figure}
+
+\subsection{}
+
+\begin{lstlisting}[caption={Node Memory Utilization}]
+Node Memory Utilization (%)
+nodes cluster-1-node1 cluster-1-node2 cluster-2-node1 cluster-2-node2 cluster-3-node1 cluster-3-node2 cluster-4-node1 cluster-4-node2 cluster-5-node1 cluster-5-node2 cluster-6-node1 cluster-6-node2 cluster-7-node1 cluster-7-node2 cluster-8-node1 cluster-8-node2 cluster-9-node1 cluster-9-node2 cluster-10-node1 cluster-10-node2
+clusters-3 52,00 41,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 58,00 44,00 0,00 0,00 0,00 1,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 86,00 64,00 0,00 0,00 0,00 0,00 0,00 1,00 1,00 1,00 10,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 1,00 4,00
+\end{lstlisting}
+
+\begin{figure}[ht]
+\centering
+\includegraphics{results/node-memory-utilization.eps}
+\caption{Node Memory Utilization}\label{fig:node-memory-utilization.eps}
 \end{figure}
 
 

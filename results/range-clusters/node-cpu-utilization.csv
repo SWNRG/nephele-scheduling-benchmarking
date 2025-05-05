@@ -1,0 +1,5 @@
+Node CPU Utilization (%)
+nodes cluster-1-node1 cluster-1-node2 cluster-2-node1 cluster-2-node2 cluster-3-node1 cluster-3-node2 cluster-4-node1 cluster-4-node2 cluster-5-node1 cluster-5-node2 cluster-6-node1 cluster-6-node2 cluster-7-node1 cluster-7-node2 cluster-8-node1 cluster-8-node2 cluster-9-node1 cluster-9-node2 cluster-10-node1 cluster-10-node2
+clusters-3 67,00 96,00 99,00 87,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 99,00 92,00 100,00 100,00 100,00 99,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 100,00 98,00 100,00 100,00 100,00 99,00 100,00 99,00 100,00 100,00 81,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 100,00 100,00

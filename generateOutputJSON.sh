@@ -69,8 +69,8 @@ cluster_json=$(printf '%s\n' "${cluster_names[@]}" | while read -r c; do
   },\n' "$c" "${cluster_cpu_utilization[$c]}" "${cluster_memory_utilization[$c]}" "${cluster_node_utilization[$c]}"
 done | sed '$ s/,$//') # remove trailing comma
 
-# Build node array JSON
-node_json=$(printf '%s\n' "${!node_cpu_utilization[@]}" | while read -r n; do
+# Build sorted node array JSON
+node_json=$(printf '%s\n' "${!node_cpu_utilization[@]}" | sort -V | while read -r n; do
   printf '{
     "name": "%s",
     "cpuUtilization": %d,

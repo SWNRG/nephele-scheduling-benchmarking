@@ -6,7 +6,7 @@
   "clusters": [
     {
       "name": "cluster1",
-      "cpuUtilization": 21,
+      "cpuUtilization": 7,
       "memoryUtilization": 3,
       "nodeUtilization": 100
     },
@@ -25,14 +25,34 @@
   ],
   "nodes": [
     {
-      "name": "kwok-node-1",
-      "cpuUtilization": 4,
+      "name": "cluster1-node-1",
+      "cpuUtilization": 7,
       "memoryUtilization": 3
     },
     {
-      "name": "kwok-node-2",
-      "cpuUtilization": 39,
+      "name": "cluster1-node-2",
+      "cpuUtilization": 7,
       "memoryUtilization": 3
+    },
+    {
+      "name": "cluster2-node-1",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster2-node-2",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster3-node-1",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster3-node-2",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
     }
   ]
 }

@@ -61,13 +61,28 @@ fi
 unset seen
 declare -A seen
 # Keep track of placements with placements array
+declare -A placements_dict
+# ordered placements
 placements=()
 for cluster_name in "${cluster_names[@]}"; do
   if [[ -n "${seen[$cluster_name]}" ]]; then
     continue
   fi
 
-  if [[ ! "${services_placements[@]}" =~ "${cluster_name}" ]]; then
+  
+  #aif [[ ! "${services_placements[@]}" =~ "${cluster_name}" ]]; then
+    # Nothing placed in this cluster, continue
+  #  continue
+  #fi
+
+  found=false
+  for placement in "${services_placements[@]}"; do
+    if [[ "$placement" == "$cluster_name"* ]]; then
+        found=true
+        break
+    fi
+  done
+  if ! $found; then
     # Nothing placed in this cluster, continue
     continue
   fi
@@ -93,11 +108,27 @@ for cluster_name in "${cluster_names[@]}"; do
   for key in $keys; do
     # extract placement for particular key value
     node_name=$(echo "$placement_result" | jq -r .$key.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0])
-    placements+=($node_name)
+    placements_dict[$key]=$node_name  
   done
 
   echo ""
 done
+
+# create placements array ordered by service_name
+z=0
+for index in "${!services_names[@]}"; do
+  replicas="${services_replicas[$index]}"
+
+  for k in $(seq 1 $replicas); do
+    service_name="${services_names[$index]}$k"
+
+    placements+=("${placements_dict[$service_name]}")
+    ((z++))
+  done
+done
+
+echo "Node placements are: ${placements[@]}"
+echo ""
 
 # Creating service pods
 echo -e "${GREEN}Creating service pods${NC}"

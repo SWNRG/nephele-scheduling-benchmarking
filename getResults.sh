@@ -185,6 +185,7 @@ function process_metric() {
 # extract and process all metrics defined in metrics variable
 
 metric_names=$(echo "$metrics" | jq -r 'keys[]')
+
 for metric in $metric_names; do
    echo "processing metric $metric"
    process_metric "$metric"

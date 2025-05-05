@@ -1,4 +1,6 @@
-placement-times placement-times.csv "Cluster and Node Placement Times" yes yes no no "Service Replicas Number" "Time (ms)" auto auto top left "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4
-cluster-cpu-utilization cluster-cpu-utilization.csv "Cluster CPU Utilization" yes yes no no "Cluster" "CPU (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4
-cluster-memory-utilization cluster-memory-utilization.csv "Cluster Memory Utilization" yes yes no no "Cluster" "Memory (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4
-cluster-node-utilization cluster-node-utilization.csv "Cluster Node Utilization" yes yes no no "Cluster" "Node (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4
+placement-times placement-times.csv "Cluster and Node Placement Times" yes yes no no "Service Replicas Number" "Time (ms)" auto auto top left "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4 replicas-20 5 replicas-30 6
+cluster-cpu-utilization cluster-cpu-utilization.csv "Cluster CPU Utilization" yes yes no no "Cluster" "CPU (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4 replicas-20 5 replicas-30 6
+cluster-memory-utilization cluster-memory-utilization.csv "Cluster Memory Utilization" yes yes no no "Cluster" "Memory (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4 replicas-20 5 replicas-30 6
+cluster-node-utilization cluster-node-utilization.csv "Cluster Node Utilization" yes yes no no "Cluster" "Node (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4 replicas-20 5 replicas-30 6
+node-cpu-utilization node-cpu-utilization.csv "Node CPU Utilization" yes yes no no "Cluster" "CPU (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4 replicas-20 5 replicas-30 6
+node-memory-utilization node-memory-utilization.csv "Node Memory Utilization" yes yes no no "Cluster" "Memory (%)" auto [0:100] top right "-45 scale 0"  replica-1 2 replicas-5 3 replicas-10 4 replicas-20 5 replicas-30 6

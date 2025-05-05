@@ -1,0 +1,5 @@
+Node Memory Utilization (%)
+nodes cluster-1-node1 cluster-1-node2 cluster-2-node1 cluster-2-node2 cluster-3-node1 cluster-3-node2 cluster-4-node1 cluster-4-node2 cluster-5-node1 cluster-5-node2 cluster-6-node1 cluster-6-node2 cluster-7-node1 cluster-7-node2 cluster-8-node1 cluster-8-node2 cluster-9-node1 cluster-9-node2 cluster-10-node1 cluster-10-node2
+clusters-3 52,00 41,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 58,00 44,00 0,00 0,00 0,00 1,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 86,00 64,00 0,00 0,00 0,00 0,00 0,00 1,00 1,00 1,00 10,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 1,00 4,00
