@@ -2,7 +2,6 @@
 
 # specify run ids (check reconfigureExperiment.sh)
 runs=("replica-1" "replicas-5" "replicas-10" "replicas-20" "replicas-30")
-#runs=("replicas-10")
 
 # number of replications
 replications_number=1
@@ -11,7 +10,7 @@ replications_number=1
 experiment_name="service-replicas"
 
 # wait time between experiments
-experiment_wait_time=60
+experiment_wait_time=120
 
 # structure of experiment output
 metrics='{

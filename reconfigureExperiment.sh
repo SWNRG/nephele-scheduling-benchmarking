@@ -71,7 +71,7 @@ case $run_id in
     ;;
 
   "replicas-30")
-    services_replicas_sets=("20 20 20 20 20" "20 20 20 20 20")
+    services_replicas_sets=("30 30 30 30 30" "30 30 30 30 30")
 
     services_names_sets=("mediuma mediumb mediumc mediumd mediume" "mediumf mediumg mediumh mediumi mediumj")
     services_dependencies_sets=("mediumb mediuma mediuma mediuma mediuma" "mediuma mediuma mediuma mediuma mediuma")
