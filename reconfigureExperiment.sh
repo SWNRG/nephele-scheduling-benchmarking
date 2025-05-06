@@ -1,6 +1,82 @@
 #!/bin/bash
 
 case $run_id in
+  "light-cpu")
+    cluster_names=("cluster1" "cluster2" "cluster3")
+    cluster_nodes=(2 3 4)
+    cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
+    cluster_memory=("64Gi" "128Gi" "256Gi")
+    cluster_pods=(100 100 100)
+    cluster_gpus=(0 0 0 0 0)
+
+    services_names_sets=("lightcpua lightcpub lightcpuc lightcpud lightcpue" "lightcpuf lightcpug lightcpuh lightcpui lightcpuj")
+    services_dependencies_sets=("lightcpub lightcpua lightcpua lightcpua lightcpua" "lightcpua lightcpua lightcpua lightcpua lightcpua")
+    services_cpu_sets=("light light light light light" "light light light light light") # total cpu is (7.5 + 7.5) * 11 = 165
+    services_memory_sets=("light light light light light" "light light light light light")
+    services_replicas_sets=("11 11 11 11 11" "11 11 11 11 11")
+    services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0")
+    ;;
+	       
+  "medium-cpu")
+    cluster_names=("cluster1" "cluster2" "cluster3")
+    cluster_nodes=(2 3 4)
+    cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
+    cluster_memory=("64Gi" "128Gi" "256Gi")
+    cluster_pods=(100 100 100)
+    cluster_gpus=(0 0 0 0 0)
+
+    services_names_sets=("mediumcpua mediumcpub mediumcpuc mediumcpud mediumcpue" "mediumcpuf mediumcpug mediumcpuh mediumcpui mediumcpuj")
+    services_dependencies_sets=("mediumcpub mediumcpua mediumcpua mediumcpua mediumcpua" "mediumcpua mediumcpua mediumcpua mediumcpua mediumcpua")
+    services_cpu_sets=("medium medium medium medium medium" "medium medium medium medium medium") # total cpu is (20 + 20) * 4 = 160
+    services_memory_sets=("light light light light light" "light light light light light")
+    services_replicas_sets=("4 4 4 4 4" "4 4 4 4 4")
+    services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0")
+    ;;
+
+  "large-cpu")
+    cluster_names=("cluster1" "cluster2" "cluster3")
+    cluster_nodes=(2 3 4)
+    cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
+    cluster_memory=("64Gi" "128Gi" "256Gi")
+    cluster_pods=(100 100 100)
+    cluster_gpus=(0 0 0 0 0)
+
+    services_names_sets=("largecpua largecpub largecpuc largecpud largecpue" "largecpuf largecpug largecpuh largecpui largecpuj")
+    services_dependencies_sets=("largecpub largecpua largecpua largecpua largecpua" "largecpua largecpua largecpua largecpua largecpua")
+    services_cpu_sets=("large large large large large" "large large large large large") # total cpu is 64 * 2 = 128
+    services_memory_sets=("light light light light light" "light light light light light")
+    services_replicas_sets=("2 2 2 2 2" "2 2 2 2 2")
+    services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0")
+    ;;
+
+  "mixture-cpu")
+    cluster_names=("cluster1" "cluster2" "cluster3")
+    cluster_nodes=(2 3 4)
+    cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
+    cluster_memory=("64Gi" "128Gi" "256Gi")
+    cluster_pods=(100 100 100)
+    cluster_gpus=(0 0 0 0 0)
+
+    services_names_sets=("lightcpua mediumcpub lightcpuc lightcpud largecpue" "lightcpuf mediumcpug lightcpuh largecpui lightcpuj")
+    services_dependencies_sets=("mediumcpub lightcpua lightpua lightcpua lightcpua" "lightcpua lightcpua lightcpua lightcpua lightcpua")
+    services_cpu_sets=("light medium light light large" "light medium light large light") # total cpu is (1.5 + 4 + 8 + 1.5 + 4 + 8)*6 = 162
+    services_memory_sets=("light light light light light" "light light light light light")
+    services_replicas_sets=("6 6 6 6 6" "6 6 6 6 6")
+    services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0")
+    ;;
+
+
+  "light-memory")
+
+    ;;
+
+  "medium-memory")
+
+    ;; 
+
+  "large-memory")
+
+    ;; 
 
   "replica-1")
     services_replicas_sets=("1 1 1 1 1" "1 1 1 1 1")

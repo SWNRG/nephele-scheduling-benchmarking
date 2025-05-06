@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # specify run ids (check reconfigureExperiment.sh)
-runs=("clusters-3" "clusters-5" "clusters-10")
+runs=("light-cpu" "medium-cpu" "large-cpu" "mixture-cpu") 
 
 # number of replications
 replications_number=1
 
 # name of experiment
-experiment_name="range-clusters"
+experiment_name="heterogeneous-clusters-cpu-apps"
 
 # wait time between experiments
-experiment_wait_time=60
+experiment_wait_time=120
 
 # structure of experiment output
 metrics='{
@@ -20,7 +20,7 @@ metrics='{
       ".placements.nodePlacementTime"
     ],
     "columns": [
-      "clusters",
+      "services",
       "cluster-placement-time",
       "node-placement-time"
     ],
@@ -30,27 +30,13 @@ metrics='{
     "values": [
       ".clusters[0].cpuUtilization",
       ".clusters[1].cpuUtilization",
-      ".clusters[2].cpuUtilization",
-      ".clusters[3].cpuUtilization",
-      ".clusters[4].cpuUtilization",
-      ".clusters[5].cpuUtilization",
-      ".clusters[6].cpuUtilization",
-      ".clusters[7].cpuUtilization",
-      ".clusters[8].cpuUtilization",
-      ".clusters[9].cpuUtilization"
+      ".clusters[2].cpuUtilization"
     ],
     "columns": [
       "clusters",
       "cluster-1",
       "cluster-2",
-      "cluster-3",
-      "cluster-4",
-      "cluster-5",
-      "cluster-6",
-      "cluster-7",
-      "cluster-8",
-      "cluster-9",
-      "cluster-10"
+      "cluster-3"
     ],
     "rows": "Cluster CPU Utilization (%)"
   },
@@ -58,27 +44,13 @@ metrics='{
     "values": [
       ".clusters[0].memoryUtilization",
       ".clusters[1].memoryUtilization",
-      ".clusters[2].memoryUtilization",
-      ".clusters[3].memoryUtilization",
-      ".clusters[4].memoryUtilization",
-      ".clusters[5].memoryUtilization",
-      ".clusters[6].memoryUtilization",
-      ".clusters[7].memoryUtilization",
-      ".clusters[8].memoryUtilization",
-      ".clusters[9].memoryUtilization"
+      ".clusters[2].memoryUtilization"
     ],
     "columns": [
       "clusters",
       "cluster-1",
       "cluster-2",
-      "cluster-3",
-      "cluster-4",
-      "cluster-5",
-      "cluster-6",
-      "cluster-7",
-      "cluster-8",
-      "cluster-9",
-      "cluster-10"
+      "cluster-3"
     ],
     "rows": "Cluster Memory Utilization (%)"
   },
@@ -86,27 +58,13 @@ metrics='{
     "values": [
       ".clusters[0].nodeUtilization",
       ".clusters[1].nodeUtilization",
-      ".clusters[2].nodeUtilization",
-      ".clusters[3].nodeUtilization",
-      ".clusters[4].nodeUtilization",
-      ".clusters[5].nodeUtilization",
-      ".clusters[6].nodeUtilization",
-      ".clusters[7].nodeUtilization",
-      ".clusters[8].nodeUtilization",
-      ".clusters[9].nodeUtilization"
+      ".clusters[2].nodeUtilization"
     ],
     "columns": [
       "clusters",
       "cluster-1",
       "cluster-2",
-      "cluster-3",
-      "cluster-4",
-      "cluster-5",
-      "cluster-6",
-      "cluster-7",
-      "cluster-8",
-      "cluster-9",
-      "cluster-10"
+      "cluster-3"
     ],
     "rows": "Cluster Node Utilization (%)"
   },
@@ -120,18 +78,7 @@ metrics='{
       ".nodes[5].cpuUtilization",
       ".nodes[6].cpuUtilization",
       ".nodes[7].cpuUtilization",
-      ".nodes[8].cpuUtilization",
-      ".nodes[9].cpuUtilization",
-      ".nodes[10].cpuUtilization",
-      ".nodes[11].cpuUtilization",
-      ".nodes[12].cpuUtilization",
-      ".nodes[13].cpuUtilization",
-      ".nodes[14].cpuUtilization",
-      ".nodes[15].cpuUtilization",
-      ".nodes[16].cpuUtilization",
-      ".nodes[17].cpuUtilization",
-      ".nodes[18].cpuUtilization",
-      ".nodes[19].cpuUtilization"
+      ".nodes[8].cpuUtilization"
     ],
     "columns": [
       "nodes",
@@ -139,22 +86,11 @@ metrics='{
       "cluster-1-node2",
       "cluster-2-node1",
       "cluster-2-node2",
+      "cluster-2-node3",
       "cluster-3-node1",
       "cluster-3-node2",
-      "cluster-4-node1",
-      "cluster-4-node2",
-      "cluster-5-node1",
-      "cluster-5-node2",
-      "cluster-6-node1",
-      "cluster-6-node2",
-      "cluster-7-node1",
-      "cluster-7-node2",
-      "cluster-8-node1",
-      "cluster-8-node2",
-      "cluster-9-node1",
-      "cluster-9-node2",
-      "cluster-10-node1",
-      "cluster-10-node2"
+      "cluster-3-node3",
+      "cluster-3-node4"
     ],
     "rows": "Node CPU Utilization (%)"
   },
@@ -168,41 +104,19 @@ metrics='{
       ".nodes[5].memoryUtilization",
       ".nodes[6].memoryUtilization",
       ".nodes[7].memoryUtilization",
-      ".nodes[8].memoryUtilization",
-      ".nodes[9].memoryUtilization",
-      ".nodes[10].memoryUtilization",
-      ".nodes[11].memoryUtilization",
-      ".nodes[12].memoryUtilization",
-      ".nodes[13].memoryUtilization",
-      ".nodes[14].memoryUtilization",
-      ".nodes[15].memoryUtilization",
-      ".nodes[16].memoryUtilization",
-      ".nodes[17].memoryUtilization",
-      ".nodes[18].memoryUtilization",
-      ".nodes[19].memoryUtilization"
+      ".nodes[8].memoryUtilization"
     ],
     "columns": [
-      "nodes",
+     "nodes",
       "cluster-1-node1",
       "cluster-1-node2",
       "cluster-2-node1",
       "cluster-2-node2",
+      "cluster-2-node3",
       "cluster-3-node1",
       "cluster-3-node2",
-      "cluster-4-node1",
-      "cluster-4-node2",
-      "cluster-5-node1",
-      "cluster-5-node2",
-      "cluster-6-node1",
-      "cluster-6-node2",
-      "cluster-7-node1",
-      "cluster-7-node2",
-      "cluster-8-node1",
-      "cluster-8-node2",
-      "cluster-9-node1",
-      "cluster-9-node2",
-      "cluster-10-node1",
-      "cluster-10-node2"
+      "cluster-3-node3",
+      "cluster-3-node4"
     ],
     "rows": "Node Memory Utilization (%)"
   }

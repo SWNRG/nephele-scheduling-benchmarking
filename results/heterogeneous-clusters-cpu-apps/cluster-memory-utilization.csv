@@ -1,0 +1,6 @@
+Cluster Memory Utilization (%)
+clusters cluster-1 cluster-2 cluster-3
+light-cpu 12.00 0.00 3.00
+medium-cpu 1.00 0.00 1.00
+large-cpu 0.00 0.00 0.00
+mixture-cpu 7.00 0.00 1.00
