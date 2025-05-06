@@ -1,0 +1,6 @@
+Cluster and Node Placement Times (ms)
+services cluster-placement-time node-placement-time
+light-memory 0,00 3,00
+medium-memory 0,00 2,00
+large-memory 1,00 2,00
+mixture-memory 0,00 2,00
