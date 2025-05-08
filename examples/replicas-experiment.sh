@@ -12,6 +12,12 @@ experiment_name="service-replicas"
 # wait time between experiments
 experiment_wait_time=120
 
+# service placement period (in secs)
+placement_period=120
+
+# format of experiment output (e.g., json)
+output_format='json'
+
 # structure of experiment output
 metrics='{
   "placement-times": {
@@ -116,7 +122,7 @@ graphs='[
         "filename": "placement-times.csv",
         "title": "Cluster and Node Placement Times",
         "striptitle": "yes",
-        "transpose": "yes",
+        "transpose": "no",
         "filterkeyword": "no",
         "removekeyword": "no",
         "xlabel": "Service Replicas Number",

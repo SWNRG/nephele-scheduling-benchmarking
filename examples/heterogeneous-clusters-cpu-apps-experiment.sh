@@ -12,6 +12,12 @@ experiment_name="heterogeneous-clusters-cpu-apps"
 # wait time between experiments
 experiment_wait_time=120
 
+# service placement period (in secs)
+placement_period=120
+
+# format of experiment output (e.g., json)
+output_format='json'
+
 # structure of experiment output
 metrics='{
   "placement-times": {

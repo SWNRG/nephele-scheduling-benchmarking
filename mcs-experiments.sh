@@ -29,11 +29,11 @@ services_memory_sets=("light large light" "light large light")
 services_replicas_sets=("10 10 10" "10 10 10") # number of times to replicate each service
 services_gpus_sets=("0 0 0" "0 0 0") # whether each service requires gpu acceleration or not
 
-# service placement period (in secs)
-placement_period=120
+# service placement period (in secs) - only if it is not already set
+: "${placement_period:=120}"
 
-# format of experiment output (e.g., json)
-output_format='json'
+# format of experiment output (e.g., json) - only if it is not alread set
+: "${output_format:=json}"
 
 # dry run option
 dry_run=false #true
