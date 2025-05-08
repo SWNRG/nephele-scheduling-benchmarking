@@ -30,7 +30,7 @@ metrics='{
       "cluster-placement-time",
       "node-placement-time"
     ],
-    "rows": "Cluster and Node Placement Times (ms)"
+    "rows": "Cluster and Node Placement Times (s)"
   },
   "cluster-cpu-utilization": {
     "values": [
@@ -220,11 +220,11 @@ graphs='[
         "filename": "placement-times.csv",
         "title": "Cluster and Node Placement Times",
         "striptitle": "yes",
-        "transpose": "yes",
+        "transpose": "no",
         "filterkeyword": "no",
         "removekeyword": "no",
         "xlabel": "Service Replicas Number",
-	"ylabel": "Time (ms)",
+	"ylabel": "Time (s)",
         "xrange": "auto",
         "yrange": "auto",
         "boxvertical": "top",
@@ -287,7 +287,7 @@ graphs='[
         "transpose": "yes",
         "filterkeyword": "no",
         "removekeyword": "no",
-        "xlabel": "Cluster",
+        "xlabel": "Node",
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
@@ -303,7 +303,7 @@ graphs='[
         "transpose": "yes",
         "filterkeyword": "no",
         "removekeyword": "no",
-        "xlabel": "Cluster",
+        "xlabel": "Node",
         "ylabel": "Memory (%)",
         "xrange": "auto",
         "yrange": "[0:100]",

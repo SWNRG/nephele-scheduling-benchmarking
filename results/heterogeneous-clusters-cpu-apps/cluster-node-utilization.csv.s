@@ -1,0 +1,5 @@
+clusters cluster-1 cluster-2 cluster-3
+light-cpu 100,00 0,00 100,00
+medium-cpu 100,00 100,00 100,00
+large-cpu 100,00 100,00 100,00
+mixture-cpu 100,00 100,00 100,00

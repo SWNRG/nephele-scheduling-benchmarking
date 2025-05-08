@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Generate gnuplot script and save to file
+cat <<EOF >> plot.p
+# box style 1: Solid line with black markers
+set style line 1 lc rgb '#000000' lw 3 pt 8 ps 1.5
+# box style 2: Dashed line with thicker gray markers
+set style line 2 lc rgb '#555555' lw 4 dt 2 pt 7 ps 1.5
+# box style 3: Dotted line with black markers
+set style line 3 lc rgb '#000000' lw 3 dt 3 pt 3 ps 1.5
+# box style 4: Dash-dot line with thicker gray markers
+set style line 4 lc rgb '#555555' lw 4 dt 1 pt 7 ps 1.5
+# box style 5: Dashed line with black-filled circle markers
+set style line 5 lc rgb '#000000' lw 3 dt 2 pt 6 ps 1.5
+# box style 6: Solid line with gray-filled square markers
+set style line 6 lc rgb '#555555' lw 3 pt 4 ps 1.5
+# box style 7: Dotted line with black-filled triangle markers
+set style line 7 lc rgb '#000000' lw 3 dt 3 pt 5 ps 1.5
+# box style 8: Dash-dot line with thicker gray markers
+set style line 8 lc rgb '#555555' lw 4 dt 1 pt 2 ps 1.5
+EOF

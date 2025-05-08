@@ -4,7 +4,7 @@
 runs=("light-cpu" "medium-cpu" "large-cpu" "mixture-cpu") 
 
 # number of replications
-replications_number=1
+replications_number=10
 
 # name of experiment
 experiment_name="heterogeneous-clusters-cpu-apps"
@@ -30,7 +30,7 @@ metrics='{
       "cluster-placement-time",
       "node-placement-time"
     ],
-    "rows": "Cluster and Node Placement Times (ms)"
+    "rows": "Cluster and Node Placement Times (s)"
   },
   "cluster-cpu-utilization": {
     "values": [
@@ -134,15 +134,15 @@ graphs='[
         "filename": "placement-times.csv",
         "title": "Cluster and Node Placement Times",
         "striptitle": "yes",
-        "transpose": "yes",
+        "transpose": "no",
         "filterkeyword": "no",
         "removekeyword": "no",
-        "xlabel": "Service Replicas Number",
-	"ylabel": "Time (ms)",
+        "xlabel": "Type of Services",
+	"ylabel": "Time (s)",
         "xrange": "auto",
         "yrange": "auto",
         "boxvertical": "top",
-        "boxhorizontal": "left",
+        "boxhorizontal": "center",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -158,7 +158,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "right",
+        "boxhorizontal": "center",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -190,7 +190,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "right",
+        "boxhorizontal": "center",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -201,12 +201,12 @@ graphs='[
         "transpose": "yes",
         "filterkeyword": "no",
         "removekeyword": "no",
-        "xlabel": "Cluster",
+        "xlabel": "Node",
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "right",
+        "boxhorizontal": "center",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -217,7 +217,7 @@ graphs='[
         "transpose": "yes",
         "filterkeyword": "no",
         "removekeyword": "no",
-        "xlabel": "Cluster",
+        "xlabel": "Node",
         "ylabel": "Memory (%)",
         "xrange": "auto",
         "yrange": "[0:100]",

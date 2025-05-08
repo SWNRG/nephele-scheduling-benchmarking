@@ -1,0 +1,10 @@
+nodes light-cpu medium-cpu large-cpu mixture-cpu
+cluster-1-node1 100,00 100,00 100,00 100,00
+cluster-1-node2 100,00 100,00 100,00 97,20
+cluster-2-node1 0,00 100,00 100,00 100,00
+cluster-2-node2 0,00 17,50 10,00 19,80
+cluster-2-node3 0,00 0,00 0,00 0,00
+cluster-3-node1 40,00 99,80 100,00 100,00
+cluster-3-node2 85,00 99,80 99,60 99,60
+cluster-3-node3 0,00 99,90 100,00 95,20
+cluster-3-node4 0,00 90,70 94,80 99,80

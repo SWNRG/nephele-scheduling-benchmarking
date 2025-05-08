@@ -71,7 +71,7 @@ echo "set ytics font 'Courier,14'" >> plot.p
 echo "set xlabel font 'Courier,18'" >> plot.p
 echo "set ylabel font 'Courier,18'" >> plot.p
 echo "set title font 'Courier,18'" >> plot.p
-echo "set key font 'Courier,16'" >> plot.p
+echo "set key font 'Courier,14'" >> plot.p
 echo "set ytic auto" >> plot.p
 echo "set title '$(echo $title)'" >> plot.p
 echo "set xlabel '$(echo $xlabel)'" >> plot.p

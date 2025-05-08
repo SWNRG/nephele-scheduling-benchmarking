@@ -8,7 +8,7 @@ set ytics font 'Courier,14'
 set xlabel font 'Courier,18'
 set ylabel font 'Courier,18'
 set title font 'Courier,18'
-set key font 'Courier,16'
+set key font 'Courier,14'
 set ytic auto
 set title 'Cluster Memory Utilization'
 set xlabel 'Cluster'

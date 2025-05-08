@@ -30,7 +30,7 @@ metrics='{
       "cluster-placement-time",
       "node-placement-time"
     ],
-    "rows": "Cluster and Node Placement Times (ms)"
+    "rows": "Cluster and Node Placement Times (s)"
   },
   "cluster-cpu-utilization": {
     "values": [
@@ -126,7 +126,7 @@ graphs='[
         "filterkeyword": "no",
         "removekeyword": "no",
         "xlabel": "Service Replicas Number",
-	"ylabel": "Time (ms)",
+	"ylabel": "Time (s)",
         "xrange": "auto",
         "yrange": "auto",
         "boxvertical": "top",
@@ -146,7 +146,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "right",
+        "boxhorizontal": "center",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -178,7 +178,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "right",
+        "boxhorizontal": "center",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -189,12 +189,12 @@ graphs='[
         "transpose": "yes",
         "filterkeyword": "no",
         "removekeyword": "no",
-        "xlabel": "Cluster",
+        "xlabel": "Node",
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "right",
+        "boxhorizontal": "center",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -205,7 +205,7 @@ graphs='[
         "transpose": "yes",
         "filterkeyword": "no",
         "removekeyword": "no",
-        "xlabel": "Cluster",
+        "xlabel": "Node",
         "ylabel": "Memory (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
