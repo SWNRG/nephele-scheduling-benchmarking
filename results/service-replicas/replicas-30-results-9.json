@@ -1,25 +1,25 @@
 {
   "placements": {
     "clusterPlacementTime": 1,
-    "nodePlacementTime": 13
+    "nodePlacementTime": 22
   },
   "clusters": [
     {
       "name": "cluster1",
       "cpuUtilization": 99,
-      "memoryUtilization": 49,
+      "memoryUtilization": 50,
       "nodeUtilization": 100
     },
     {
       "name": "cluster2",
-      "cpuUtilization": 0,
-      "memoryUtilization": 0,
-      "nodeUtilization": 0
+      "cpuUtilization": 35,
+      "memoryUtilization": 17,
+      "nodeUtilization": 100
     },
     {
       "name": "cluster3",
-      "cpuUtilization": 57,
-      "memoryUtilization": 28,
+      "cpuUtilization": 99,
+      "memoryUtilization": 49,
       "nodeUtilization": 100
     }
   ],
@@ -31,13 +31,13 @@
     },
     {
       "name": "cluster1-node-2",
-      "cpuUtilization": 98,
-      "memoryUtilization": 49
+      "cpuUtilization": 99,
+      "memoryUtilization": 50
     },
     {
       "name": "cluster2-node-1",
-      "cpuUtilization": 0,
-      "memoryUtilization": 0
+      "cpuUtilization": 70,
+      "memoryUtilization": 35
     },
     {
       "name": "cluster2-node-2",
@@ -46,13 +46,13 @@
     },
     {
       "name": "cluster3-node-1",
-      "cpuUtilization": 100,
-      "memoryUtilization": 50
+      "cpuUtilization": 98,
+      "memoryUtilization": 49
     },
     {
       "name": "cluster3-node-2",
-      "cpuUtilization": 14,
-      "memoryUtilization": 7
+      "cpuUtilization": 99,
+      "memoryUtilization": 50
     }
   ]
 }
