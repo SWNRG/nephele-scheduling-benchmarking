@@ -8,11 +8,11 @@ set ytics font 'Courier,14'
 set xlabel font 'Courier,18'
 set ylabel font 'Courier,18'
 set title font 'Courier,18'
-set key font 'Courier,16'
+set key font 'Courier,14'
 set ytic auto
 set title 'Cluster and Node Placement Times'
 set xlabel 'Service Replicas Number'
-set ylabel 'Time (ms)'
+set ylabel 'Time (s)'
 set key top left
 # Line style 1: Solid line with black markers
 set style line 1 lc rgb '#000000' lw 3 pt 8 ps 1.5
@@ -30,6 +30,5 @@ set style line 6 lc rgb '#555555' lw 3 pt 4 ps 1.5
 set style line 7 lc rgb '#000000' lw 3 dt 3 pt 5 ps 1.5
 # Line style 8: Dash-dot line with thicker gray markers
 set style line 8 lc rgb '#555555' lw 4 dt 1 pt 2 ps 1.5
-plot '/root/results/placement-times.csv.s.t' using 2:xtic(1) title 'clusters-3' with linespoints ls 1\
-, '/root/results/placement-times.csv.s.t' using 3 title 'clusters-5' with linespoints ls 2\
-, '/root/results/placement-times.csv.s.t' using 4 title 'clusters-10' with linespoints ls 3
+plot '/root/results/placement-times.csv.s' using 2:xtic(1) title 'cluster-placement-time' with linespoints ls 1\
+, '/root/results/placement-times.csv.s' using 3 title 'node-placement-time' with linespoints ls 2

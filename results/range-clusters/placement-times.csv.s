@@ -1,4 +1,3 @@
-Cluster and Node Placement Times (s)
 clusters cluster-placement-time node-placement-time
 clusters-3 0,00 6,10
 clusters-5 1,40 8,40

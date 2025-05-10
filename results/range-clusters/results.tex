@@ -17,11 +17,11 @@
 \subsection{}
 
 \begin{lstlisting}[caption={Cluster and Node Placement Times}]
-Cluster and Node Placement Times (ms)
+Cluster and Node Placement Times (s)
 clusters cluster-placement-time node-placement-time
-clusters-3 1,00 4,00
-clusters-5 3,00 8,00
-clusters-10 3,00 15,00
+clusters-3 0,00 6,10
+clusters-5 1,40 8,40
+clusters-10 2,70 14,70
 \end{lstlisting}
 
 \begin{figure}[ht]
@@ -35,9 +35,9 @@ clusters-10 3,00 15,00
 \begin{lstlisting}[caption={Cluster CPU Utilization}]
 Cluster CPU Utilization (%)
 clusters cluster-1 cluster-2 cluster-3 cluster-4 cluster-5 cluster-6 cluster-7 cluster-8 cluster-9 cluster-10
-clusters-3 82,00 93,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-5 96,00 100,00 99,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-10 99,00 100,00 99,00 99,00 100,00 40,00 0,00 0,00 0,00 100,00
+clusters-3 99,30 49,90 99,90 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 96,00 99,90 99,70 0,00 99,80 0,00 0,00 0,00 0,00 0,00
+clusters-10 99,40 99,80 99,50 99,80 99,60 39,40 0,00 0,00 0,00 99,50
 \end{lstlisting}
 
 \begin{figure}[ht]
@@ -51,8 +51,8 @@ clusters-10 99,00 100,00 99,00 99,00 100,00 40,00 0,00 0,00 0,00 100,00
 \begin{lstlisting}[caption={Cluster Memory Utilization}]
 Cluster Memory Utilization (%)
 clusters cluster-1 cluster-2 cluster-3 cluster-4 cluster-5 cluster-6 cluster-7 cluster-8 cluster-9 cluster-10
-clusters-3 47,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-5 51,00 0,00 1,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-3 43,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 51,00 0,00 1,00 0,00 1,00 0,00 0,00 0,00 0,00 0,00
 clusters-10 75,00 0,00 0,00 1,00 1,00 5,00 0,00 0,00 0,00 2,00
 \end{lstlisting}
 
@@ -67,8 +67,8 @@ clusters-10 75,00 0,00 0,00 1,00 1,00 5,00 0,00 0,00 0,00 2,00
 \begin{lstlisting}[caption={Cluster Node Utilization}]
 Cluster Node Utilization (%)
 clusters cluster-1 cluster-2 cluster-3 cluster-4 cluster-5 cluster-6 cluster-7 cluster-8 cluster-9 cluster-10
-clusters-3 100,00 100,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-5 100,00 100,00 100,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-3 100,00 100,00 100,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 100,00 100,00 100,00 0,00 100,00 0,00 0,00 0,00 0,00 0,00
 clusters-10 100,00 100,00 100,00 100,00 100,00 100,00 0,00 0,00 0,00 100,00
 \end{lstlisting}
 
@@ -83,9 +83,9 @@ clusters-10 100,00 100,00 100,00 100,00 100,00 100,00 0,00 0,00 0,00 100,00
 \begin{lstlisting}[caption={Node CPU Utilization}]
 Node CPU Utilization (%)
 nodes cluster-1-node1 cluster-1-node2 cluster-2-node1 cluster-2-node2 cluster-3-node1 cluster-3-node2 cluster-4-node1 cluster-4-node2 cluster-5-node1 cluster-5-node2 cluster-6-node1 cluster-6-node2 cluster-7-node1 cluster-7-node2 cluster-8-node1 cluster-8-node2 cluster-9-node1 cluster-9-node2 cluster-10-node1 cluster-10-node2
-clusters-3 67,00 96,00 99,00 87,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-5 99,00 92,00 100,00 100,00 100,00 99,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-10 100,00 98,00 100,00 100,00 100,00 99,00 100,00 99,00 100,00 100,00 81,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 100,00 100,00
+clusters-3 98,80 99,60 99,80 0,50 99,70 99,90 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 99,50 92,00 99,90 99,60 100,00 99,60 0,00 0,00 99,80 99,90 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 99,50 98,90 99,70 99,80 99,60 99,60 99,90 99,90 99,60 99,70 79,80 0,00 0,00 0,00 0,00 0,00 0,00 0,00 99,40 99,50
 \end{lstlisting}
 
 \begin{figure}[ht]
@@ -99,9 +99,9 @@ clusters-10 100,00 98,00 100,00 100,00 100,00 99,00 100,00 99,00 100,00 100,00 8
 \begin{lstlisting}[caption={Node Memory Utilization}]
 Node Memory Utilization (%)
 nodes cluster-1-node1 cluster-1-node2 cluster-2-node1 cluster-2-node2 cluster-3-node1 cluster-3-node2 cluster-4-node1 cluster-4-node2 cluster-5-node1 cluster-5-node2 cluster-6-node1 cluster-6-node2 cluster-7-node1 cluster-7-node2 cluster-8-node1 cluster-8-node2 cluster-9-node1 cluster-9-node2 cluster-10-node1 cluster-10-node2
-clusters-3 52,00 41,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-5 58,00 44,00 0,00 0,00 0,00 1,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
-clusters-10 86,00 64,00 0,00 0,00 0,00 0,00 0,00 1,00 1,00 1,00 10,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 1,00 4,00
+clusters-3 49,00 37,00 0,00 0,00 0,00 1,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-5 58,00 44,00 0,00 0,00 0,00 1,00 0,00 0,00 1,00 1,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00
+clusters-10 86,00 64,60 0,00 0,00 0,00 0,00 0,00 1,00 1,00 1,00 10,00 0,00 0,00 0,00 0,00 0,00 0,00 0,00 1,00 4,00
 \end{lstlisting}
 
 \begin{figure}[ht]
