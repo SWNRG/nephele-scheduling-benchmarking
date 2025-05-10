@@ -8,13 +8,13 @@ set ytics font 'Courier,14'
 set xlabel font 'Courier,18'
 set ylabel font 'Courier,18'
 set title font 'Courier,18'
-set key font 'Courier,16'
+set key font 'Courier,14'
 set ytic auto
 set title 'Node Memory Utilization'
-set xlabel 'Cluster'
+set xlabel 'Node'
 set ylabel 'Memory (%)'
 set yrange [0:100]
-set key top right
+set key top center
 # Line style 1: Solid line with black markers
 set style line 1 lc rgb '#000000' lw 3 pt 8 ps 1.5
 # Line style 2: Dashed line with thicker gray markers

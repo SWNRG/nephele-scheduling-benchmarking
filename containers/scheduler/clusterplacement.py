@@ -55,26 +55,32 @@ def create_placement_input(cluster_json, service_json):
 
     Returns
     -------
-    cluster_capacities : list of float
+    cluster_cpu_capacities : list of float
+    cluster_memory_capacities: list of float
     cluster_accelerations : list of bool
     cpu_limits: list of float
+    memory_limits: list of float
     accelerations: list of bool
     replicas: list of int
     current_placement: 2D list of placement
     """
-    cluster_capacities = []
+    cluster_cpu_capacities = []
+    cluster_memory_capacities = []
     cluster_accelerations = []
 
     for cluster_info in cluster_json.values():
-        cluster_capacities.append(cluster_info["available_cpu"])
+        cluster_cpu_capacities.append(cluster_info["available_cpu"])
+        cluster_memory_capacities.append(cluster_info["available_memory"])
         cluster_accelerations.append(cluster_info["gpu"])
 
     cpu_limits = []
+    memory_limits = []
     accelerations = []
     replicas = []
 
     for service_info in service_json:
         cpu_limits.append(service_info["cpu"])
+        memory_limits.append(service_info["memory"])
         accelerations.append(service_info["gpu"])
         replicas.append(service_info.get("replicas", 1))
 
@@ -88,24 +94,28 @@ def create_placement_input(cluster_json, service_json):
     current_placement[:, 0] = 1
 
     logger.info("Received cluster placement input.")
-    logger.info(f"cluster_capacities: {cluster_capacities}")
+    logger.info(f"cluster_cpu_capacities: {cluster_cpu_capacities}")
+    logger.info(f"cluster_memory_capacities: {cluster_memory_capacities}")
     logger.info(f"cluster_accelerations {cluster_accelerations}")
     logger.info(f"cpu_limits: {cpu_limits}")
+    logger.info(f"memory_limits: {memory_limits}")
     logger.info(f"accelerations: {accelerations}")
 
-    return cluster_capacities, cluster_accelerations, cpu_limits, accelerations, replicas, current_placement
+    return cluster_cpu_capacities, cluster_memory_capacities, cluster_accelerations, cpu_limits, memory_limits, accelerations, replicas, current_placement
 
 
 def decide_placement(
-        cluster_capacities, cluster_acceleration, cpu_limits,
+        cluster_cpu_capacities, cluster_memory_capacities, cluster_acceleration, cpu_limits, memory_limits,
         acceleration, replicas, current_placement,
 ):
     """
     Parameters
     ---
-    cluster_capacities: List of CPU capacity for each cluster
+    cluster_cpu_capacities: List of CPU capacity for each cluster
+    cluster_memory_capacities: List of Memory capacity for each cluster
     cluster_acceleration: List of GPU acceleration feature for each cluster
     cpu_limits: List of CPU limits for each service
+    memory_limits: List of Memory limits for each service
     acceleration: List of GPU acceleration feature for each service
     replicas: List of number of replicas
     current_placement: List of current placement
@@ -116,7 +126,7 @@ def decide_placement(
                it means that service i is placed at cluster j
     """
 
-    num_clusters = len(cluster_capacities)
+    num_clusters = len(cluster_cpu_capacities)
     num_nodes = len(cpu_limits)
 
     x = cp.Variable((num_nodes, num_clusters), boolean=True)
@@ -143,7 +153,15 @@ def decide_placement(
         constraints.append(
             cp.sum(
                 cp.multiply(x[:, e], [cpu_limits[s] * replicas[s] for s in range(num_nodes)])
-            ) <= cluster_capacities[e]
+            ) <= cluster_cpu_capacities[e]
+        )
+
+    # add also memory constraints
+    for e in range(num_clusters):
+        constraints.append(
+            cp.sum(
+                cp.multiply(x[:, e], [memory_limits[s] * replicas[s] for s in range(num_nodes)])
+            ) <= cluster_memory_capacities[e]
         )
 
     # Constraint 3: Acceleration feature constraints

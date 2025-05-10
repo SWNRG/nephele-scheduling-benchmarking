@@ -4,7 +4,7 @@
 runs=("light-memory" "medium-memory" "large-memory" "mixture-memory")
 
 # number of replications
-replications_number=1
+replications_number=10
 
 # name of experiment
 experiment_name="heterogeneous-clusters-memory-apps"

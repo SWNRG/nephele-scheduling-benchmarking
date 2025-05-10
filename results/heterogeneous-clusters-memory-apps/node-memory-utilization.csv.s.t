@@ -1,0 +1,10 @@
+nodes light-memory medium-memory large-memory mixture-memory
+cluster-1-node1 6,00 25,00 100,00 6,00
+cluster-1-node2 6,00 25,00 100,00 6,00
+cluster-2-node1 6,00 25,00 100,00 6,00
+cluster-2-node2 0,40 1,80 100,00 0,70
+cluster-2-node3 0,00 0,00 100,00 0,00
+cluster-3-node1 8,00 33,00 100,00 83,00
+cluster-3-node2 8,00 33,00 100,00 8,00
+cluster-3-node3 8,00 33,00 100,00 83,00
+cluster-3-node4 7,60 31,80 100,00 7,30

@@ -131,6 +131,7 @@ graphs='[
         "yrange": "auto",
         "boxvertical": "top",
         "boxhorizontal": "left",
+	"boxlegend": "cluster-placement-time 2 node-placement-time 3",
         "xticksrotate": "-45 scale 0"
     },
     {

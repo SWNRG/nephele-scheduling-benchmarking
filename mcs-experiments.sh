@@ -55,6 +55,11 @@ echo ""
 # Creating clusters
 echo -e "${GREEN}Creating clusters${NC}"
 if [ "$dry_run" != "true" ]; then
+  # silently delete existing clusters first
+  source ./deleteClusters.sh 2> /dev/null > /dev/null
+  # wait two seconds and then create new clusters
+  sleep 2
+  # create new clusters
   source ./createClusters.sh
   create_clusters
 fi

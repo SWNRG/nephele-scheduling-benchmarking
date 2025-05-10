@@ -1,0 +1,5 @@
+clusters cluster-1 cluster-2 cluster-3
+light-memory 6,00 2,00 7,60
+medium-memory 25,00 8,60 32,70
+large-memory 100,00 100,00 100,00
+mixture-memory 6,00 2,00 45,00

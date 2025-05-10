@@ -6,7 +6,11 @@ substring=""
 for run in "${runs[@]}";
 do
    # create metrics substring
-   substring="$substring $run $counter"
+   if [[ -z $substring ]]; then
+     substring="$run $counter"
+   else
+     substring="$substring $run $counter"
+   fi
    ((counter++))  # Increment the counter
 done
 
@@ -29,10 +33,15 @@ echo $graphs | jq -c '.[]' | while IFS= read -r obj; do
     yrange=$(echo "$obj" | jq -r '.yrange')
     boxvertical=$(echo "$obj" | jq -r '.boxvertical')
     boxhorizontal=$(echo "$obj" | jq -r '.boxhorizontal')
+    boxlegend=$(echo "$obj" | jq -r '.boxlegend // ""')
     xticksrotate=$(echo "$obj" | jq -r '.xticksrotate')
 
+    if [[ -z "$boxlegend" ]]; then
+      # substring (legend details) is not directly passed
+      boxlegend=$substring
+    fi
     # create metrics file based on all parameters
-    echo "$name $filename \"$title\" $striptitle $transpose $filterkeyword $removekeyword \"$xlabel\" \"$ylabel\" $xrange $yrange $boxvertical $boxhorizontal \"$xticksrotate\" $substring" >> results/${experiment_name}/metrics
+    echo "$name $filename \"$title\" $striptitle $transpose $filterkeyword $removekeyword \"$xlabel\" \"$ylabel\" $xrange $yrange $boxvertical $boxhorizontal \"$xticksrotate\" $boxlegend" >> results/${experiment_name}/metrics
 done
 
 

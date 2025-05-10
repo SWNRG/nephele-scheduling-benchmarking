@@ -103,11 +103,21 @@ for cluster_name in "${cluster_names[@]}"; do
 
   # keep track of all service placements
   keys=$(echo "$placement_result" | jq -r 'keys[]')
+  if [ $? -ne 0 ]; then
+    echo "Error: failure in node placement"
+    exit 1
+  fi
 
   # Iterate through the keys
   for key in $keys; do
     # extract placement for particular key value
     node_name=$(echo "$placement_result" | jq -r .$key.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms[0].matchExpressions[0].values[0])
+    # in case of an error stop
+    # Check if jq failed
+    if [ $? -ne 0 ] || [ -z "$node_name" ] || [ "$node_name" = "null" ]; then
+      echo "Error: failure in node placement '$key'"
+      exit 1
+    fi
     placements_dict[$key]=$node_name  
   done
 

@@ -70,7 +70,7 @@ case $run_id in
     cluster_names=("cluster1" "cluster2" "cluster3")
     cluster_nodes=(2 3 4)
     cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
-    cluster_memory=("16Gi" "32Gi" "8Gi")
+    cluster_memory=("16Gi" "32Gi" "48Gi")
     cluster_pods=(100 100 100)
     cluster_gpus=(0 0 0 0 0)
 
@@ -86,7 +86,7 @@ case $run_id in
     cluster_names=("cluster1" "cluster2" "cluster3")
     cluster_nodes=(2 3 4)
     cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
-    cluster_memory=("16Gi" "32Gi" "8Gi")
+    cluster_memory=("16Gi" "32Gi" "48Gi")
     cluster_pods=(100 100 100)
     cluster_gpus=(0 0 0 0 0)
 
@@ -102,7 +102,7 @@ case $run_id in
     cluster_names=("cluster1" "cluster2" "cluster3")
     cluster_nodes=(2 3 4)
     cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
-    cluster_memory=("16Gi" "32Gi" "8Gi")
+    cluster_memory=("16Gi" "32Gi" "48Gi")
     cluster_pods=(100 100 100)
     cluster_gpus=(0 0 0 0 0)
 
@@ -118,7 +118,7 @@ case $run_id in
     cluster_names=("cluster1" "cluster2" "cluster3")
     cluster_nodes=(2 3 4)
     cluster_cpu=(8 16 32) # total cpu is 16+48+128=192 
-    cluster_memory=("16Gi" "32Gi" "8Gi")
+    cluster_memory=("16Gi" "32Gi" "48Gi")
     cluster_pods=(100 100 100)
     cluster_gpus=(0 0 0 0 0)
 

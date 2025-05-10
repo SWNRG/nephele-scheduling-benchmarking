@@ -170,11 +170,11 @@ def cluster_placement():
 
         # create decide_placement input format
         logger.info("Create decide_placement input format")
-        cluster_capacities, cluster_accelerations, cpu_limits, accelerations, replicas, current_placement = create_placement_input(clusters, services)
+        cluster_cpu_capacities, cluster_memory_capacities, cluster_accelerations, cpu_limits, memory_limits, accelerations, replicas, current_placement = create_placement_input(clusters, services)
 
         # Call the decide_placement algorithm for placement
         logger.info("Calling decide_placement algorithm for placement...")
-        placement_result = decide_placement (cluster_capacities, cluster_accelerations, cpu_limits, accelerations, replicas, current_placement)
+        placement_result = decide_placement (cluster_cpu_capacities, cluster_memory_capacities, cluster_accelerations, cpu_limits, memory_limits, accelerations, replicas, current_placement)
 
         # Handle placement failure
         if "error" in placement_result:
