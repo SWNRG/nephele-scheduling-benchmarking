@@ -84,8 +84,11 @@ if [[ $xrange != "auto" ]]; then
   echo "set xrange $xrange" >> plot.p
 fi
 #echo "set xrange [0:30]" >> plot.p
-# check if boxvertical and boxhorizontal are numerical
-if [[ "$boxvertical" =~ ?[0-9]+(\.[0-9]+)?$ ]] && [[ "$boxhorizontal" =~ ?[0-9]+(\.[0-9]+)?$ ]]; then
+
+# Regex for a number: optional digits, optional decimal part
+number_regex='^[0-9]+(\.[0-9]+)?$'
+
+if [[ "$boxvertical" =~ $number_regex ]] && [[ "$boxhorizontal" =~ $number_regex ]]; then
   # both parameters are numeric
   echo "set key at graph ${boxvertical}, ${boxhorizontal}" >> plot.p
 else

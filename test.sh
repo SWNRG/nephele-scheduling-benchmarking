@@ -1,14 +1,14 @@
 #!/bin/bash
 
-#empty_variable=("")
+boxvertical="0.58"
+boxhorizontal="0.98"
 
-# Check if 'empty_variable' is unset
-if [ -z "${empty_variable+x}" ]; then
-  echo "empty_variable is unset. Exiting."
-  exit 1
+# Regex for a number: optional digits, optional decimal part
+number_regex='^[0-9]+(\.[0-9]+)?$'
+
+if [[ "$boxvertical" =~ $number_regex ]] && [[ "$boxhorizontal" =~ $number_regex ]]; then
+  echo "set key at graph ${boxvertical}, ${boxhorizontal}" 
+else
+  echo "set key $boxvertical $boxhorizontal"
 fi
 
-# If set (even to empty string), continue
-echo "empty_variable is set. Proceeding."
-
-# Rest of your script here

@@ -30,7 +30,5 @@ set style line 6 lc rgb '#555555' lw 3 pt 4 ps 1.5
 set style line 7 lc rgb '#000000' lw 3 dt 3 pt 5 ps 1.5
 # Line style 8: Dash-dot line with thicker gray markers
 set style line 8 lc rgb '#555555' lw 4 dt 1 pt 2 ps 1.5
-plot '/root/results/placement-times.csv.s' using 2:xtic(1) title 'light-cpu' with linespoints ls 1\
-, '/root/results/placement-times.csv.s' using 3 title 'medium-cpu' with linespoints ls 2\
-, '/root/results/placement-times.csv.s' using 4 title 'large-cpu' with linespoints ls 3\
-, '/root/results/placement-times.csv.s' using 5 title 'mixture-cpu' with linespoints ls 4
+plot '/root/results/placement-times.csv.s' using 2:xtic(1) title 'cluster-placement-time' with linespoints ls 1\
+, '/root/results/placement-times.csv.s' using 3 title 'node-placement-time' with linespoints ls 2

@@ -206,8 +206,8 @@ graphs='[
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
-        "boxvertical": "top",
-        "boxhorizontal": "center",
+        "boxvertical": "0.58",
+        "boxhorizontal": "0.98",
         "xticksrotate": "-45 scale 0"
     },
     {

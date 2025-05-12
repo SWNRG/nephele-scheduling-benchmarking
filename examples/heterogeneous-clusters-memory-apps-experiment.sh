@@ -158,8 +158,8 @@ graphs='[
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
-        "boxvertical": "top",
-        "boxhorizontal": "center",
+        "boxvertical": "bottom",
+        "boxhorizontal": "left",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -206,8 +206,8 @@ graphs='[
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
-        "boxvertical": "top",
-        "boxhorizontal": "center",
+        "boxvertical": "bottom",
+        "boxhorizontal": "left",
         "xticksrotate": "-45 scale 0"
     },
     {
@@ -223,7 +223,7 @@ graphs='[
         "xrange": "auto",
         "yrange": "[0:100]",
         "boxvertical": "top",
-        "boxhorizontal": "center",
+        "boxhorizontal": "left",
         "xticksrotate": "-45 scale 0"
     }
 ]'

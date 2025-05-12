@@ -292,9 +292,9 @@ graphs='[
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
-        "boxvertical": "top",
-        "boxhorizontal": "right",
-        "xticksrotate": "-45 scale 0"
+        "boxvertical": "0.58",
+        "boxhorizontal": "0.98",
+        "xticksrotate": "0 scale 0"
     },
     {
         "name": "node-memory-utilization",
@@ -310,7 +310,7 @@ graphs='[
         "yrange": "[0:100]",
         "boxvertical": "top",
         "boxhorizontal": "right",
-        "xticksrotate": "-45 scale 0"
+        "xticksrotate": "0 scale 0"
     }
 ]'
 

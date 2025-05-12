@@ -46,7 +46,7 @@ fi
 # Executing scheduler
 echo -e "${GREEN}Executing scheduler${NC}"
 if [ "$dry_run" != "true" ]; then
-  #source ./executeScheduler.sh
+  source ./executeScheduler.sh
   # wait 5 secs
   sleep 5
 fi
