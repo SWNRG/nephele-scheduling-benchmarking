@@ -31,7 +31,7 @@
     },
     {
       "name": "cluster1-node-2",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 50
     },
     {

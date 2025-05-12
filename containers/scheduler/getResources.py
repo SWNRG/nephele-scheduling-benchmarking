@@ -69,11 +69,11 @@ def parse_cpu(cpu):
         elif cpu == "large":
             return 8
         elif cpu.endswith("n"):
-            return float(cpu[:-1]) / 1e9
+            return round(float(cpu[:-1]) / 1e9, 2)
         elif cpu.endswith("m"):
-            return float(cpu[:-1]) / 1000
+            return round(float(cpu[:-1]) / 1000, 2)
         else:
-            return float(cpu)
+            return round(float(cpu), 2)
     except Exception as e:
         logger.error(f"Failed to parse CPU value '{cpu}': {e}")
         raise
