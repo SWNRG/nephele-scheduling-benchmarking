@@ -120,7 +120,7 @@ graphs='[
     {
         "name": "placement-times",
         "filename": "placement-times.csv",
-        "title": "Cluster and Node Placement Times",
+        "title": "",
         "striptitle": "yes",
         "transpose": "no",
         "filterkeyword": "no",
@@ -137,7 +137,7 @@ graphs='[
     {
         "name": "cluster-cpu-utilization",
         "filename": "cluster-cpu-utilization.csv",
-        "title": "Cluster CPU Utilization",
+        "title": "",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",
@@ -153,7 +153,7 @@ graphs='[
     {
         "name": "cluster-memory-utilization",
         "filename": "cluster-memory-utilization.csv",
-        "title": "Cluster Memory Utilization",
+        "title": "",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",
@@ -169,7 +169,7 @@ graphs='[
     {
         "name": "cluster-node-utilization",
         "filename": "cluster-node-utilization.csv",
-        "title": "Cluster Node Utilization",
+        "title": "",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",
@@ -185,7 +185,7 @@ graphs='[
     {
         "name": "node-cpu-utilization",
         "filename": "node-cpu-utilization.csv",
-        "title": "Node CPU Utilization",
+        "title": "",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",
@@ -201,7 +201,7 @@ graphs='[
     {
         "name": "node-memory-utilization",
         "filename": "node-memory-utilization.csv",
-        "title": "Node Memory Utilization",
+        "title": "",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",

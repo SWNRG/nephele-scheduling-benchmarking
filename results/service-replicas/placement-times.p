@@ -10,7 +10,7 @@ set ylabel font 'Courier,18'
 set title font 'Courier,18'
 set key font 'Courier,14'
 set ytic auto
-set title 'Cluster and Node Placement Times'
+set title ''
 set xlabel 'Service Replicas Number'
 set ylabel 'Time (s)'
 set key top left

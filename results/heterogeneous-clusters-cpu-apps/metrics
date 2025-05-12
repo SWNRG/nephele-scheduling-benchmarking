@@ -1,6 +1,6 @@
-placement-times placement-times.csv "Cluster and Node Placement Times" yes no no no "Type of Services" "Time (s)" auto auto top center "-45 scale 0" cluster-placement-time 2 node-placement-time 3
-cluster-cpu-utilization cluster-cpu-utilization.csv "Cluster CPU Utilization" yes yes no no "Cluster" "CPU (%)" auto [0:100] top center "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
-cluster-memory-utilization cluster-memory-utilization.csv "Cluster Memory Utilization" yes yes no no "Cluster" "Memory (%)" auto [0:100] top right "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
-cluster-node-utilization cluster-node-utilization.csv "Cluster Node Utilization" yes yes no no "Cluster" "Node (%)" auto [0:100] top center "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
-node-cpu-utilization node-cpu-utilization.csv "Node CPU Utilization" yes yes no no "Node" "CPU (%)" auto [0:100] 0.58 0.98 "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
-node-memory-utilization node-memory-utilization.csv "Node Memory Utilization" yes yes no no "Node" "Memory (%)" auto [0:100] top right "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
+placement-times placement-times.csv "" yes no no no "Type of Services" "Time (s)" auto auto top center "-45 scale 0" cluster-placement-time 2 node-placement-time 3
+cluster-cpu-utilization cluster-cpu-utilization.csv "" yes yes no no "Cluster" "CPU (%)" auto [0:100] top center "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
+cluster-memory-utilization cluster-memory-utilization.csv "" yes yes no no "Cluster" "Memory (%)" auto [0:100] top right "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
+cluster-node-utilization cluster-node-utilization.csv "" yes yes no no "Cluster" "Node (%)" auto [0:100] top center "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
+node-cpu-utilization node-cpu-utilization.csv "" yes yes no no "Node" "CPU (%)" auto [0:100] 0.58 0.98 "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5
+node-memory-utilization node-memory-utilization.csv "" yes yes no no "Node" "Memory (%)" auto [0:100] top right "-45 scale 0" light-cpu 2 medium-cpu 3 large-cpu 4 mixture-cpu 5

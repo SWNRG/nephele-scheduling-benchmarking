@@ -10,7 +10,7 @@ set ylabel font 'Courier,18'
 set title font 'Courier,18'
 set key font 'Courier,14'
 set ytic auto
-set title 'Node CPU Utilization'
+set title ''
 set xlabel 'Node'
 set ylabel 'CPU (%)'
 set yrange [0:100]
