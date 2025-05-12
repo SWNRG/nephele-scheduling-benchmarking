@@ -283,7 +283,7 @@ graphs='[
     {
         "name": "node-cpu-utilization",
         "filename": "node-cpu-utilization.csv",
-        "title": "Node CPU Utilization",
+        "title": "",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",
@@ -292,14 +292,14 @@ graphs='[
         "ylabel": "CPU (%)",
         "xrange": "auto",
         "yrange": "[0:100]",
-        "boxvertical": "0.68",
+        "boxvertical": "0.78",
         "boxhorizontal": "0.98",
         "xticksrotate": "-90 scale 0"
     },
     {
         "name": "node-memory-utilization",
         "filename": "node-memory-utilization.csv",
-        "title": "Node Memory Utilization",
+        "title": "",
         "striptitle": "yes",
         "transpose": "yes",
         "filterkeyword": "no",
