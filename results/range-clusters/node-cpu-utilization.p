@@ -3,7 +3,7 @@ set autoscale
 unset log
 unset label
 set xtic auto
-set xtics font 'Courier,14' rotate by 0 scale 0
+set xtics font 'Courier,14' rotate by -90 scale 0
 set ytics font 'Courier,14'
 set xlabel font 'Courier,18'
 set ylabel font 'Courier,18'
@@ -14,7 +14,7 @@ set title 'Node CPU Utilization'
 set xlabel 'Node'
 set ylabel 'CPU (%)'
 set yrange [0:100]
-set key at graph 0.58, 0.98
+set key at graph 0.68, 0.98
 # Line style 1: Solid line with black markers
 set style line 1 lc rgb '#000000' lw 3 pt 8 ps 1.5
 # Line style 2: Dashed line with thicker gray markers
