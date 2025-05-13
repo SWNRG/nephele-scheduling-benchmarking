@@ -26,7 +26,7 @@
   "nodes": [
     {
       "name": "cluster1-node-1",
-      "cpuUtilization": 100,
+      "cpuUtilization": 99,
       "memoryUtilization": 50
     },
     {
@@ -46,7 +46,7 @@
     },
     {
       "name": "cluster3-node-1",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 50
     },
     {

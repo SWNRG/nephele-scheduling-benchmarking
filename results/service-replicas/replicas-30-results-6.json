@@ -6,7 +6,7 @@
   "clusters": [
     {
       "name": "cluster1",
-      "cpuUtilization": 100,
+      "cpuUtilization": 99,
       "memoryUtilization": 50,
       "nodeUtilization": 100
     },
@@ -14,11 +14,11 @@
       "name": "cluster2",
       "cpuUtilization": 34,
       "memoryUtilization": 17,
-      "nodeUtilization": 100
+      "nodeUtilization": 50
     },
     {
       "name": "cluster3",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 50,
       "nodeUtilization": 100
     }
@@ -31,7 +31,7 @@
     },
     {
       "name": "cluster1-node-2",
-      "cpuUtilization": 100,
+      "cpuUtilization": 99,
       "memoryUtilization": 50
     },
     {
@@ -51,7 +51,7 @@
     },
     {
       "name": "cluster3-node-2",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 50
     }
   ]

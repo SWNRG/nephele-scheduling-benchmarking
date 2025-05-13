@@ -2,5 +2,5 @@ replications cluster-1 cluster-2 cluster-3
 replica-1 3,00 0,00 0,00
 replicas-5 19,00 0,00 0,00
 replicas-10 39,00 0,00 0,00
-replicas-20 49,60 0,00 28,00
-replicas-30 50,00 17,00 49,30
+replicas-20 49,70 0,00 28,00
+replicas-30 50,00 17,00 50,00

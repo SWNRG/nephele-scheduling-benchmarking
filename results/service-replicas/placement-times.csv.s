@@ -1,6 +1,6 @@
 replications cluster-placement-time node-placement-time
-replica-1 0,00 0,20
-replicas-5 0,00 3,10
-replicas-10 0,10 6,40
-replicas-20 0,60 13,00
-replicas-30 0,90 19,50
+replica-1 0,00 0,40
+replicas-5 0,20 3,30
+replicas-10 0,10 6,30
+replicas-20 0,40 13,00
+replicas-30 0,90 19,10

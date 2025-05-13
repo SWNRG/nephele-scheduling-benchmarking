@@ -151,7 +151,7 @@ for i in "${!cluster_names[@]}"; do
       if [[ $cpu_usage -gt 0 ]] || [[ $mem_usage -gt 0 ]]; then
 	# measure nodes that utilize at least CPU or Memory
         used_nodes=$((used_nodes + 1))
-	echo "used_nodes $used_nodes cluster $cluster"
+	#echo "used_nodes $used_nodes cluster $cluster"
       fi
     done <<< "$node_metrics"
   fi
