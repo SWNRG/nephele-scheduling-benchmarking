@@ -148,7 +148,11 @@ for i in "${!cluster_names[@]}"; do
 
       total_cpu=$((total_cpu + cpu_usage))
       total_mem=$((total_mem + mem_usage))
-      used_nodes=$((used_nodes + 1))
+      if [[ $cpu_usage -gt 0 ]] || [[ $mem_usage -gt 0 ]]; then
+	# measure nodes that utilize at least CPU or Memory
+        used_nodes=$((used_nodes + 1))
+	echo "used_nodes $used_nodes cluster $cluster"
+      fi
     done <<< "$node_metrics"
   fi
 

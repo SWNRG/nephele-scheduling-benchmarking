@@ -14,11 +14,11 @@
       "name": "cluster2",
       "cpuUtilization": 33,
       "memoryUtilization": 8,
-      "nodeUtilization": 100
+      "nodeUtilization": 33
     },
     {
       "name": "cluster3",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 33,
       "nodeUtilization": 100
     }
@@ -51,7 +51,7 @@
     },
     {
       "name": "cluster3-node-1",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 33
     },
     {
@@ -61,7 +61,7 @@
     },
     {
       "name": "cluster3-node-3",
-      "cpuUtilization": 99,
+      "cpuUtilization": 100,
       "memoryUtilization": 33
     },
     {
