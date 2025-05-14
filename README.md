@@ -3,7 +3,7 @@
 This repository contains MCBench, an experimentation framework that simulates large-scale multi-cluster Kubernetes deployments, while maintaining a real control-plane. MCBench is suitable for the experimentation of NEPHELE scheduling algorithms, including both for inter- and intra-cluster levels.
 
 ## Features
-
+The basic features of MCBench are:
 1. **Flexible and Configurable Scenarios**:
    - Users can define flexible experimentation scenarios, stressing both cluster and node placement mechanisms under varying cluster resources and service graph configurations.
 2. **Resource-efficient Experimentation**:
@@ -88,10 +88,13 @@ sudo mv kwok /usr/local/bin/kwok
 ---
 
 ### Installation of MCBench
+You should clone MCBench's gitlab repository first:
 
 ```
-helm package nephele-cluster-scheduler
+git clone https://gitlab.eclipse.org/eclipse-research-labs/nephele-project/nephele-scheduling-benchmarking.git
 ```
+Then you can move to the directory `nephele-schedulink-benchmarking` and start executing experiments, after configuring them.
+
 
 ## Configuring experiments
 A user can configure experiments in two ways, corresponding to a single experimental run or an experimentation scenario (i.e., ranging a particular configuration parameter).
