@@ -20,16 +20,16 @@ This repository contains MCBench, an experimentation framework that simulates la
 ## Setup Instructions
 
 ### Prerequisites
-Here, you can find basic installation instructions for the prerequesites, including jq, curl, wget, docker, and kwok.
+Here, you can find basic installation instructions for the prerequesites, including `jq`, `curl`, `wget`, `docker`, and `kwok`.
 
-- jq, curl and wget
+- `jq`, `curl` and `wget`
 MCBench requires some basic tools to be installed. Example installation instructions, i.e., for Ubuntu Linux, follow:
 ```
 sudo apt-get update
 sudo apt-get install jq curl wget
 ```
 
-- Docker
+- `Docker`
 You should install Docker.
   - Set up Docker's apt repository.
 ```
@@ -105,31 +105,33 @@ Basic configuration parameters:
 : "${placement_period:=120}"
 
 # format of experiment output (e.g., json) - only if it is not alread set
-: "${output\_format:=json}"
+: "${output_format:=json}"
 ```
 
 Infrastructure configuration:
 
 ```
-cluster\_names=("cluster1" "cluster2" "cluster3")  
-cluster\_nodes=(2 2 2) 
-cluster\_cpu=(32 32 32)  # total cpu is 3 * 64 = 192
-cluster\_memory=("256Gi" "256Gi" "256Gi")  
-cluster\_pods=(100 100 100)   
-cluster\_gpus=(0 0 0)
+cluster_names=("cluster1" "cluster2" "cluster3")  
+cluster_nodes=(2 2 2) 
+cluster_cpu=(32 32 32)  # total cpu is 3 * 64 = 192
+cluster_memory=("256Gi" "256Gi" "256Gi")  
+cluster_pods=(100 100 100)   
+cluster_gpus=(0 0 0)
 ```
 
 Services configuration:
 ```
-services\_names\_sets=("lightmemory heavymemory lightcpu mediummemory secondlightmemory" "mediumcpu secondheavymemory heavycpu secondmediumcpu secondlightcpu") 
-services\_dependencies\_sets=("heavymemory heavymemory mediumcpu mediumcpu heavycpu" "heavycpu heavycpu heavycpu heavycpu heavycpu")
-services\_cpu\_sets=("light light light light light" "medium light large medium light") # total cpu is 21 * 28 = 588
-services\_memory\_sets=("light large light medium light" "light large light light light")
-services\_replicas\_sets=("21 21 21 21 21" "21 21 21 21 21") 
-services\_gpus\_sets=("0 0 0 0 0" "0 0 0 0 0") 
+services_names_sets=("lightmemory heavymemory lightcpu mediummemory secondlightmemory" "mediumcpu secondheavymemory heavycpu secondmediumcpu secondlightcpu") 
+services_dependencies_sets=("heavymemory heavymemory mediumcpu mediumcpu heavycpu" "heavycpu heavycpu heavycpu heavycpu heavycpu")
+services_cpu_sets=("light light light light light" "medium light large medium light") # total cpu is 21 * 28 = 588
+services_memory_sets=("light large light medium light" "light large light light light")
+services_replicas_sets=("21 21 21 21 21" "21 21 21 21 21") 
+services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0") 
 ```
 
 Basic supported intents are for CPU: (i) `light`, which corresponds to 0.5 vCPUs; (ii) `small`, means 1 vCPU; (iii) `medium`, is translated to 4 vCPUs; and (iv) `large`, which reflects 8 vCPUs. The equivalent intents for Memory are: (i) `light`, which corresponds to 500MiBs; (ii) `small`, is translated to 1GiB; (iii) `medium`, meaning 2GiB; and (iv) `large`, which is 8GiB. The user can specify both quality (i.e., intents) and qualitative values (e.g., 2 vCPUs and 8GiB Memory). 
+
+#### Execution of an experimentation scenario
 
 Basic configuration parameters:
 ```
@@ -137,19 +139,19 @@ Basic configuration parameters:
 runs=("clusters-3" "clusters-5" "clusters-10")
 
 # number of replications
-replications\_number=10
+replications_number=10
 
 # name of experiment
-experiment\_name="range-clusters"
+experiment_name="range-clusters"
 
 # wait time between experiments
-experiment\_wait\_time=60
+experiment_wait_time=60
 
 # service placement period (in secs)
-placement\_period=120
+placement_period=120
 
 # format of experiment output (e.g., json)
-output\_format='json'
+output_format='json'
 ```
 
 Configuring Metrics:
@@ -192,8 +194,6 @@ graphs='[
     },
 ...
 ```
-
-#### Execution of an experimentation scenario
 
 ## Relevant Projects
 This is work in progress
