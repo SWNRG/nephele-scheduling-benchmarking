@@ -1,62 +1,202 @@
-# Nephele-Cluster-Scheduler
+# Nephele-Scheduling-Benchmarking
 
-This repository contains a Flask-based API for Kubernetes that retrieves node metrics, calculates resource availability, and performs service placement using a heuristic algorithm. The API exposes endpoints to retrieve node metrics and compute placement decisions for services based on their resource demands.
-
+This repository contains MCBench, an experimentation framework that simulates large-scale multi-cluster Kubernetes deployments, while maintaining a real control-plane. MCBench is suitable for the experimentation of NEPHELE scheduling algorithms, including both for inter- and intra-cluster levels.
 
 ## Features
 
-1. **Fetch Node Cluster Resources**:
-   - Retrieves total, used, and available resources (CPU, Memory) from the Kubernetes Metrics Server and also identify if the cluster is GPU enabled.
-   - Excludes control-plane nodes and unschedulable nodes.
-2. **Service Placement**:
-   - Accepts service resource requirements via a `POST` API.
-   - Performs heuristic placement based on available resources and dependency constraints.
-   - Returns placement decisions and Helm chart-compatible node affinity configurations.
-
-3. **Exposed API Endpoints**:
-   - `/metrics` - Fetches and returns node metrics.
-   - `/placement` - Calculates service placement and returns placement decisions and Helm chart values.
+1. **Flexible and Configurable Scenarios**:
+   - Users can define flexible experimentation scenarios, stressing both cluster and node placement mechanisms under varying cluster resources and service graph configurations.
+2. **Resource-efficient Experimentation**:
+   - MCBench supports scalable Kubernetes clusters with emulated Pod deployments, empowering the simulation of distributed environments on a single laptop.
+3. **Control Plane Realism**:
+   - The framework is feature-rich at the control plane level, enabling the realistic evaluation of Kubernetes scheduling mechanisms.
+4. **Heterogeneous Service Graphs**:
+   - It supports the definition and dynamic deployment of heterogeneous service graphs, based on scheduling mechanisms exploiting real-time monitoring data.
+5. **Interoperability with Real Schedulers**:
+   - MCBench integrates with NEPHELE’s scheduling algorithms directly, without modification, targeting a similar behavior between simulated and real deployments.
+6. **Automated Reporting**:
+   - It supports configurable metrics and graphical figures for automated visualization, i.e., experiments are executed through a single command and produce a PDF report with the achieved measurements.
 
 ## Setup Instructions
 
 ### Prerequisites
-- A Kubernetes cluster with:
-  - **Metrics Server** installed and running. You can install Metric Server using Helm. 
+Here, you can find basic installation instructions for the prerequesites, including jq, curl, wget, docker, and kwok.
+
+- jq, curl and wget
+MCBench requires some basic tools to be installed. Example installation instructions, i.e., for Ubuntu Linux, follow:
 ```
-helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+sudo apt-get update
+sudo apt-get install jq curl wget
 ```
+
+- Docker
+You should install Docker.
+  - Set up Docker's apt repository.
 ```
-helm upgrade --install metrics-server metrics-server/metrics-server
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
 ```
-  - The **Nephele Cluster Scheduler** helm.
-- Docker installed on your local machine to build the image.
+  - To install the latest version, run:
+```
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+  - Create appropriate permissions:
+```
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+  - Log out and log back in so that your group membership is re-evaluated.
+  - Verify that the installation is successful by running the hello-world image:
+```
+sudo docker run hello-world
+```
+
+- Kubernetes WithOut Kubelet (Kwok) toolkit:
+The basic instructions on how to install Kwok toolkit follow.
+  - Variables preparation
+```
+# KWOK repository
+KWOK_REPO=kubernetes-sigs/kwok
+# Get latest
+KWOK_LATEST_RELEASE=$(curl "https://api.github.com/repos/${KWOK_REPO}/releases/latest" | jq -r '.tag_name')
+```
+  - Install `kwokctl`
+```
+wget -O kwokctl -c "https://github.com/${KWOK_REPO}/releases/download/${KWOK_LATEST_RELEASE}/kwokctl-$(go env GOOS)-$(go env GOARCH)"
+chmod +x kwokctl
+sudo mv kwokctl /usr/local/bin/kwokctl
+Install kwok #
+```
+  - Install `kwok`
+```
+wget -O kwok -c "https://github.com/${KWOK_REPO}/releases/download/${KWOK_LATEST_RELEASE}/kwok-$(go env GOOS)-$(go env GOARCH)"
+chmod +x kwok
+sudo mv kwok /usr/local/bin/kwok
+```
 
 ---
-### Installation
 
+### Installation of MCBench
 
 ```
 helm package nephele-cluster-scheduler
 ```
 
-```
-helm install nephele-scheduler nephele-cluster-scheduler-0.1.0.tgz
-```
+### Configuring experiments
+A user can configure experiments in two ways, corresponding to a single experimental run or an experimentation scenario (i.e., ranging a particular configuration parameter).
+
+#### Execution of a single experimental run
+
+Basic configuration parameters:
 
 ```
-helm status nephele-scheduler
+# service placement period (in secs) - only if it is not already set
+: "${placement_period:=120}"
+
+# format of experiment output (e.g., json) - only if it is not alread set
+: "${output\_format:=json}"
 ```
 
-
-### Test
-
-To test the code run:
+Infrastructure configuration:
 
 ```
-./request.sh
-
+cluster\_names=("cluster1" "cluster2" "cluster3")  
+cluster\_nodes=(2 2 2) 
+cluster\_cpu=(32 32 32)  # total cpu is 3 * 64 = 192
+cluster\_memory=("256Gi" "256Gi" "256Gi")  
+cluster\_pods=(100 100 100)   
+cluster\_gpus=(0 0 0)
 ```
 
+Services configuration:
+```
+services\_names\_sets=("lightmemory heavymemory lightcpu mediummemory secondlightmemory" "mediumcpu secondheavymemory heavycpu secondmediumcpu secondlightcpu") 
+services\_dependencies\_sets=("heavymemory heavymemory mediumcpu mediumcpu heavycpu" "heavycpu heavycpu heavycpu heavycpu heavycpu")
+services\_cpu\_sets=("light light light light light" "medium light large medium light") # total cpu is 21 * 28 = 588
+services\_memory\_sets=("light large light medium light" "light large light light light")
+services\_replicas\_sets=("21 21 21 21 21" "21 21 21 21 21") 
+services\_gpus\_sets=("0 0 0 0 0" "0 0 0 0 0") 
+```
 
-## Project status
+Basic supported intents are for CPU: (i) `light`, which corresponds to 0.5 vCPUs; (ii) `small`, means 1 vCPU; (iii) `medium`, is translated to 4 vCPUs; and (iv) `large`, which reflects 8 vCPUs. The equivalent intents for Memory are: (i) `light`, which corresponds to 500MiBs; (ii) `small`, is translated to 1GiB; (iii) `medium`, meaning 2GiB; and (iv) `large`, which is 8GiB. The user can specify both quality (i.e., intents) and qualitative values (e.g., 2 vCPUs and 8GiB Memory). 
+
+Basic configuration parameters:
+```
+# specify run ids (check reconfigureExperiment.sh)
+runs=("clusters-3" "clusters-5" "clusters-10")
+
+# number of replications
+replications\_number=10
+
+# name of experiment
+experiment\_name="range-clusters"
+
+# wait time between experiments
+experiment\_wait\_time=60
+
+# service placement period (in secs)
+placement\_period=120
+
+# format of experiment output (e.g., json)
+output\_format='json'
+```
+
+Configuring Metrics:
+```
+metrics='{
+  "placement-times": {
+    "values": [
+      ".placements.clusterPlacementTime",
+      ".placements.nodePlacementTime"
+    ],
+    "columns": [
+      "clusters",
+      "cluster-placement-time",
+      "node-placement-time"
+    ],
+    "rows": "Cluster and Node Placement Times (s)"
+  },
+...
+```
+
+Configuring graphical figures:
+```
+graphs='[
+    {
+        "name": "placement-times",
+        "filename": "placement-times.csv",
+        "title": "",
+        "striptitle": "yes",
+        "transpose": "no",
+        "filterkeyword": "no",
+        "removekeyword": "no",
+        "xlabel": "Service Replicas Number",
+        "ylabel": "Time (s)",
+        "xrange": "auto",
+        "yrange": "auto",
+        "boxvertical": "top",
+        "boxhorizontal": "left",
+        "boxlegend": "cluster-placement-time 2 node-placement-time 3",
+        "xticksrotate": "-45 scale 0"
+    },
+...
+```
+
+#### Execution of an experimentation scenario
+
+## Relevant Projects
 This is work in progress
+
+## Contact
+For more information...

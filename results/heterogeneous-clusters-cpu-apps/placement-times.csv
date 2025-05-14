@@ -1,6 +1,6 @@
 Cluster and Node Placement Times (s)
 services cluster-placement-time node-placement-time
-light-cpu 0,40 7,00
-medium-cpu 0,00 2,60
-large-cpu 0,00 1,50
-mixture-cpu 0,20 4,00
+light-cpu 0,60 7,00
+medium-cpu 0,00 2,50
+large-cpu 0,20 1,10
+mixture-cpu 0,10 4,00
