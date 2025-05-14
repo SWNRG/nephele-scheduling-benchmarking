@@ -93,10 +93,10 @@ sudo mv kwok /usr/local/bin/kwok
 helm package nephele-cluster-scheduler
 ```
 
-### Configuring experiments
+## Configuring experiments
 A user can configure experiments in two ways, corresponding to a single experimental run or an experimentation scenario (i.e., ranging a particular configuration parameter).
 
-#### Execution of a single experimental run
+### Execution of a single experimental run
 
 Basic configuration parameters:
 
@@ -131,7 +131,7 @@ services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0")
 
 Basic supported intents are for CPU: (i) `light`, which corresponds to 0.5 vCPUs; (ii) `small`, means 1 vCPU; (iii) `medium`, is translated to 4 vCPUs; and (iv) `large`, which reflects 8 vCPUs. The equivalent intents for Memory are: (i) `light`, which corresponds to 500MiBs; (ii) `small`, is translated to 1GiB; (iii) `medium`, meaning 2GiB; and (iv) `large`, which is 8GiB. The user can specify both quality (i.e., intents) and qualitative values (e.g., 2 vCPUs and 8GiB Memory). 
 
-#### Execution of an experimentation scenario
+### Execution of an experimentation scenario
 
 Basic configuration parameters:
 ```
