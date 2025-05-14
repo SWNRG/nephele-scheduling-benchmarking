@@ -198,8 +198,27 @@ graphs='[
 ...
 ```
 
-## Relevant Projects
-This is work in progress
+### 🚀 Relevant Projects
+
+We thank the following projects that we have used or inspired us for the creation of MCBench:
+
+- **[Kubernetes WithOut Kubelet (Kwok)](https://kwok.sigs.k8s.io/)**  
+  *Suitable for the deployment of lightweight Kubernetes multi-cluster infrastructures and the experimentation of control plane mechanisms.*  
+
+- **[NEPHELE](https://gitlab.eclipse.org/eclipse-research-labs/nephele-project)**  
+  *The gitlab webpage of NEPHELE open-source platform.*  
+
+- **[NEPHELE inter-cluster placement mechanism](https://gitlab.eclipse.org/eclipse-research-labs/nephele-project/smo/-/blob/main/src/utils/placement.py)**  
+  *The inter-cluster placement mechanism of NEPHELE.*  
+
+- **[NEPHELE intra-cluster placement mechanism](https://gitlab.eclipse.org/eclipse-research-labs/nephele-project/nephele-cluster-scheduler)** 
+  *The intra-cluster placement mechanism of NEPHELE.*
+
+- **[CODECO Experimentation Framework (CODEF)](https://gitlab.eclipse.org/eclipse-research-labs/codeco-project/experimentation-framework-and-demonstrations/experimentation-framework.git)** 
+  *The CODECO Experimentation Framework (also referred to as CODEF) is an open-source solution for the rapid experimentation of K8s-based edge cloud deployments.*
+
+- **[ClusterSlice](https://github.com/SWNRG/clusterslice)** 
+  *ClusterSlice is an open-source solution for large-scale, kubernetes-centered experimentation.*
 
 ## Contact
-For more information...
+Contact [Lefteris Mamatas](https://sites.google.com/site/emamatas/) from the University of Macedonia, Greece.
