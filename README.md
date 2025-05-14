@@ -217,7 +217,7 @@ We thank the following projects that we have used or inspired us for the creatio
 - **[CODECO Experimentation Framework (CODEF)](https://gitlab.eclipse.org/eclipse-research-labs/codeco-project/experimentation-framework-and-demonstrations/experimentation-framework.git)** 
   *The CODECO Experimentation Framework (also referred to as CODEF) is an open-source solution for the rapid experimentation of K8s-based edge cloud deployments.*
 
-- **[ClusterSlice](https://github.com/SWNRG/clusterslice)** 
+- **[ClusterSlice](https://github.com/SWNRG/clusterslice)**
   *ClusterSlice is an open-source solution for large-scale, kubernetes-centered experimentation.*
 
 ## Contact
