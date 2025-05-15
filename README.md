@@ -23,6 +23,7 @@ The basic features of MCBench are:
 Here, you can find basic installation instructions for the prerequesites of MCBench, including `jq`, `curl`, `wget`, `docker`, and `kwok`.
 
 - `jq`, `curl` and `wget`
+
 MCBench requires some basic tools to be installed. Example installation instructions, i.e., for Ubuntu Linux, follow:
 ```
 sudo apt-get update
