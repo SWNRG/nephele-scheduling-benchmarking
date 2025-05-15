@@ -17,10 +17,10 @@ The basic features of MCBench are:
 6. **Automated Reporting**:
    - It supports configurable metrics and graphical figures for automated visualization, i.e., experiments are executed through a single command and produce a PDF report with the achieved measurements.
 
-## Setup Instructions
+## 🛠️ Setup Instructions
 
-### Prerequisites
-Here, you can find basic installation instructions for the prerequesites, including `jq`, `curl`, `wget`, `docker`, and `kwok`.
+### ✅ Prerequisites
+Here, you can find basic installation instructions for the prerequesites of MCBench, including `jq`, `curl`, `wget`, `docker`, and `kwok`.
 
 - `jq`, `curl` and `wget`
 MCBench requires some basic tools to be installed. Example installation instructions, i.e., for Ubuntu Linux, follow:
@@ -87,7 +87,7 @@ sudo mv kwok /usr/local/bin/kwok
 
 ---
 
-### Installation of MCBench
+### 📦 Installation of MCBench
 You should clone MCBench's gitlab repository first:
 
 ```
@@ -96,7 +96,7 @@ git clone https://gitlab.eclipse.org/eclipse-research-labs/nephele-project/nephe
 Then you can move to the directory `nephele-schedulink-benchmarking` and start executing experiments, after configuring them.
 
 
-## Configuring experiments
+## ⚙️  Configuring experiments
 A user can configure experiments in two ways, corresponding to a single experimental run or an experimentation scenario (i.e., ranging a particular configuration parameter).
 
 ### Execution of a single experimental run
@@ -115,11 +115,11 @@ Infrastructure configuration:
 
 ```
 cluster_names=("cluster1" "cluster2" "cluster3")  
-cluster_nodes=(2 2 2) 
-cluster_cpu=(32 32 32)  # total cpu is 3 * 64 = 192
-cluster_memory=("256Gi" "256Gi" "256Gi")  
-cluster_pods=(100 100 100)   
-cluster_gpus=(0 0 0)
+cluster_nodes=(2 2 2) # number of nodes for each cluster
+cluster_cpu=(32 32 32)  # total cpu is 3 * 64 = 192 vCPUs
+cluster_memory=("256Gi" "256Gi" "256Gi") # memory of each cluster node 
+cluster_pods=(100 100 100) # maximum number of Pods  
+cluster_gpus=(0 0 0) # whether nodes are equipped with GPUs or not
 ```
 
 Services configuration:
@@ -132,9 +132,18 @@ services_replicas_sets=("21 21 21 21 21" "21 21 21 21 21")
 services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0") 
 ```
 
-Basic supported intents are for CPU: (i) `light`, which corresponds to 0.5 vCPUs; (ii) `small`, means 1 vCPU; (iii) `medium`, is translated to 4 vCPUs; and (iv) `large`, which reflects 8 vCPUs. The equivalent intents for Memory are: (i) `light`, which corresponds to 500MiBs; (ii) `small`, is translated to 1GiB; (iii) `medium`, meaning 2GiB; and (iv) `large`, which is 8GiB. The user can specify both quality (i.e., intents) and qualitative values (e.g., 2 vCPUs and 8GiB Memory). 
+CPU & Memory Intents
+
+| Intent | CPU      | Memory |
+| ------ | -------- | ------ |
+| light  | 0.5 vCPU | 500MiB |
+| small  | 1 vCPU   | 1GiB   |
+| medium | 4 vCPUs  | 2GiB   |
+| large  | 8 vCPUs  | 8GiB   |
+
 
 ### Execution of an experimentation scenario
+In the case of an experimentation scenario, the experimenter should configure the parameters it ranges in two files: the scenario definition file, i.e., see `examples` directory, and the `reconfigureExperiment.sh` file. The following example creates a scenario ranging the number of clusters.
 
 Basic configuration parameters:
 ```
@@ -157,7 +166,7 @@ placement_period=120
 output_format='json'
 ```
 
-Configuring Metrics:
+📊 Configuring Metrics:
 ```
 metrics='{
   "placement-times": {
@@ -175,7 +184,7 @@ metrics='{
 ...
 ```
 
-Configuring graphical figures:
+📈 Configuring graphical figures:
 ```
 graphs='[
     {
