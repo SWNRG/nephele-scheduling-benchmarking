@@ -1,0 +1,170 @@
+{
+  "placements": {
+    "clusterPlacementTime": 3,
+    "nodePlacementTime": 14
+  },
+  "clusters": [
+    {
+      "name": "cluster1",
+      "cpuUtilization": 100,
+      "memoryUtilization": 75,
+      "nodeUtilization": 100
+    },
+    {
+      "name": "cluster2",
+      "cpuUtilization": 99,
+      "memoryUtilization": 0,
+      "nodeUtilization": 100
+    },
+    {
+      "name": "cluster3",
+      "cpuUtilization": 100,
+      "memoryUtilization": 0,
+      "nodeUtilization": 100
+    },
+    {
+      "name": "cluster4",
+      "cpuUtilization": 100,
+      "memoryUtilization": 1,
+      "nodeUtilization": 100
+    },
+    {
+      "name": "cluster5",
+      "cpuUtilization": 100,
+      "memoryUtilization": 1,
+      "nodeUtilization": 100
+    },
+    {
+      "name": "cluster6",
+      "cpuUtilization": 39,
+      "memoryUtilization": 5,
+      "nodeUtilization": 50
+    },
+    {
+      "name": "cluster7",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster8",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster9",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0,
+      "nodeUtilization": 0
+    },
+    {
+      "name": "cluster10",
+      "cpuUtilization": 100,
+      "memoryUtilization": 2,
+      "nodeUtilization": 100
+    }
+  ],
+  "nodes": [
+    {
+      "name": "cluster1-node-1",
+      "cpuUtilization": 100,
+      "memoryUtilization": 86
+    },
+    {
+      "name": "cluster1-node-2",
+      "cpuUtilization": 100,
+      "memoryUtilization": 65
+    },
+    {
+      "name": "cluster2-node-1",
+      "cpuUtilization": 99,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster2-node-2",
+      "cpuUtilization": 100,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster3-node-1",
+      "cpuUtilization": 100,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster3-node-2",
+      "cpuUtilization": 100,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster4-node-1",
+      "cpuUtilization": 100,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster4-node-2",
+      "cpuUtilization": 99,
+      "memoryUtilization": 1
+    },
+    {
+      "name": "cluster5-node-1",
+      "cpuUtilization": 100,
+      "memoryUtilization": 1
+    },
+    {
+      "name": "cluster5-node-2",
+      "cpuUtilization": 100,
+      "memoryUtilization": 1
+    },
+    {
+      "name": "cluster6-node-1",
+      "cpuUtilization": 79,
+      "memoryUtilization": 10
+    },
+    {
+      "name": "cluster6-node-2",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster7-node-1",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster7-node-2",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster8-node-1",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster8-node-2",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster9-node-1",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster9-node-2",
+      "cpuUtilization": 0,
+      "memoryUtilization": 0
+    },
+    {
+      "name": "cluster10-node-1",
+      "cpuUtilization": 100,
+      "memoryUtilization": 1
+    },
+    {
+      "name": "cluster10-node-2",
+      "cpuUtilization": 100,
+      "memoryUtilization": 4
+    }
+  ]
+}

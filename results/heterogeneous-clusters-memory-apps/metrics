@@ -2,5 +2,5 @@ placement-times placement-times.csv "" yes no no no "Type of Services" "Time (s)
 cluster-cpu-utilization cluster-cpu-utilization.csv "" yes yes no no "Cluster" "CPU (%)" auto [0:100] bottom left "-45 scale 0" light-memory 2 medium-memory 3 large-memory 4 mixture-memory 5
 cluster-memory-utilization cluster-memory-utilization.csv "" yes yes no no "Cluster" "Memory (%)" auto [0:100] top center "-45 scale 0" light-memory 2 medium-memory 3 large-memory 4 mixture-memory 5
 cluster-node-utilization cluster-node-utilization.csv "" yes yes no no "Cluster" "Node (%)" auto [0:100] top center "-45 scale 0" light-memory 2 medium-memory 3 large-memory 4 mixture-memory 5
-node-cpu-utilization node-cpu-utilization.csv "" yes yes no no "Node" "CPU (%)" auto [0:100] bottom left "-45 scale 0" light-memory 2 medium-memory 3 large-memory 4 mixture-memory 5
-node-memory-utilization node-memory-utilization.csv "" yes yes no no "Node" "Memory (%)" auto [0:100] top left "-45 scale 0" light-memory 2 medium-memory 3 large-memory 4 mixture-memory 5
+node-cpu-utilization node-cpu-utilization.csv "" yes yes no no "Node" "CPU (%)" auto [0:100] bottom left "-90 scale 0" light-memory 2 medium-memory 3 large-memory 4 mixture-memory 5
+node-memory-utilization node-memory-utilization.csv "" yes yes no no "Node" "Memory (%)" auto [0:100] top left "-90 scale 0" light-memory 2 medium-memory 3 large-memory 4 mixture-memory 5

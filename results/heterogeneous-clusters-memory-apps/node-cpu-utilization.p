@@ -3,7 +3,7 @@ set autoscale
 unset log
 unset label
 set xtic auto
-set xtics font 'Courier,14' rotate by -45 scale 0
+set xtics font 'Courier,14' rotate by -90 scale 0
 set ytics font 'Courier,14'
 set xlabel font 'Courier,18'
 set ylabel font 'Courier,18'

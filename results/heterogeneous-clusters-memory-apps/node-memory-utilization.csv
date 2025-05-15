@@ -1,6 +1,6 @@
 Node Memory Utilization (%)
 nodes cluster-1-node1 cluster-1-node2 cluster-2-node1 cluster-2-node2 cluster-2-node3 cluster-3-node1 cluster-3-node2 cluster-3-node3 cluster-3-node4
-light-memory 6,00 6,00 6,00 0,40 0,00 8,00 8,00 8,00 7,60
-medium-memory 25,00 25,00 25,00 1,80 0,00 33,00 33,00 33,00 31,80
+light-memory 6,00 6,00 6,00 0,10 0,00 8,00 8,00 8,00 7,90
+medium-memory 25,00 25,00 25,00 0,00 0,00 33,00 33,00 33,00 33,00
 large-memory 100,00 100,00 100,00 100,00 100,00 100,00 100,00 100,00 100,00
-mixture-memory 6,00 6,00 6,00 0,70 0,00 83,00 8,00 83,00 7,30
+mixture-memory 6,00 6,00 6,00 0,00 0,00 83,00 8,00 83,00 8,00

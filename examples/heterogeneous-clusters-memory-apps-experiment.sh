@@ -208,7 +208,7 @@ graphs='[
         "yrange": "[0:100]",
         "boxvertical": "bottom",
         "boxhorizontal": "left",
-        "xticksrotate": "-45 scale 0"
+        "xticksrotate": "-90 scale 0"
     },
     {
         "name": "node-memory-utilization",
@@ -224,7 +224,7 @@ graphs='[
         "yrange": "[0:100]",
         "boxvertical": "top",
         "boxhorizontal": "left",
-        "xticksrotate": "-45 scale 0"
+        "xticksrotate": "-90 scale 0"
     }
 ]'
 
