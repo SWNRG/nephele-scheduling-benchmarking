@@ -231,5 +231,5 @@ We thank the following projects that we have used or inspired us for the creatio
 - **[ClusterSlice](https://github.com/SWNRG/clusterslice)**  
   *ClusterSlice is an open-source solution for large-scale, Kubernetes-centered experimentation.*
 
-## Contact
+## 📬 Contact
 Contact [Lefteris Mamatas](https://sites.google.com/site/emamatas/) from the University of Macedonia, Greece.
