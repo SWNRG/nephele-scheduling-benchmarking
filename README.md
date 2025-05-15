@@ -24,7 +24,7 @@ Here, you can find basic installation instructions for the prerequesites of MCBe
 
 - `jq`, `curl` and `wget`
 
-MCBench requires some basic tools to be installed. Example installation instructions, i.e., for Ubuntu Linux, follow:
+  - MCBench requires some basic tools to be installed. Example installation instructions, i.e., for Ubuntu Linux, follow:
 ```
 sudo apt-get update
 sudo apt-get install jq curl wget
@@ -132,8 +132,9 @@ services_memory_sets=("light large light medium light" "light large light light 
 services_replicas_sets=("21 21 21 21 21" "21 21 21 21 21") 
 services_gpus_sets=("0 0 0 0 0" "0 0 0 0 0") 
 ```
+Service configuration can be in the form of multiple service batches, as defined above.
 
-CPU & Memory Intents
+These are the CPU & Memory intents considered in MCBench:
 
 | Intent | CPU      | Memory |
 | ------ | -------- | ------ |
